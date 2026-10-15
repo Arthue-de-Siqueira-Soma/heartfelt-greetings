@@ -66,7 +66,7 @@ jobs:
           download images/build-26.jpg "https://cdn-ak.f.st-hatena.com/images/fotolife/s/shinya_09dom/20210303/20210303083240.jpg" "https://cdn-ak.f.st-hatena.com/images/fotolife/f/finn0219/20231111/20231111162644.jpg" "https://fiverr-res.cloudinary.com/images/q_auto%2Cf_auto/gigs3/255873420/original/86deaea6d0459f21bb33f4707f110c9389e45e5a/build-an-iron-farm-in-minecraft.png"
           download images/build-27.jpg "https://i.pinimg.com/originals/63/46/75/634675bdbac9e89f4ed9d0d33b5d2ecf.png" "https://abfielder.com/Partners/PartnerUploadedImages/img_685c1ea7e148a.jpg" "https://fiverr-res.cloudinary.com/images/q_auto%2Cf_auto/gigs3/255873420/original/86deaea6d0459f21bb33f4707f110c9389e45e5a/build-an-iron-farm-in-minecraft.png"
           download images/build-28.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2026/521/19569031_xl.webp" "https://i.pinimg.com/736x/d7/cb/37/d7cb374357487b16c26d74446c8a7c31.jpg" "https://cdn.mos.cms.futurecdn.net/qAkSrfvdpWmRNiFWw4CC9T.jpg"
-          download images/hero.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2021/735/14425238_l.jpg" "https://i.imgur.com/wQKmTDS.jpg" "https://cdn.minecraft-schematics.com/pictures/27511/large-picture-27511.jpg?time=1765902029"
+          download images/hero.jpg "https://i.postimg.cc/Xv7pFLKw/image.png"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add images/*.jpg

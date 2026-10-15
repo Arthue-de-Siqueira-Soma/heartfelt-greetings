@@ -1,0 +1,27 @@
+name: Check CraftBase backend
+
+on:
+  push:
+    paths:
+      - "api/**"
+      - ".github/workflows/check-backend.yml"
+  pull_request:
+    paths:
+      - "api/**"
+      - ".github/workflows/check-backend.yml"
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check API JavaScript syntax
+        run: |
+          node --check api/health.js
+          node --check api/analyze.js
+          node --check api/generate.js

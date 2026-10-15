@@ -147,6 +147,9 @@ export default async function handler(req, res) {
   const idea = typeof body.idea === "string" ? body.idea.trim() : "";
   const version = typeof body.version === "string" ? body.version.trim().slice(0, 40) : "1.21.8";
   const imageDataUrl = typeof body.imageDataUrl === "string" ? body.imageDataUrl : "";
+  if (version !== "1.21.8") {
+    return res.status(400).json({ error: "Esta versão inicial gera arquivos para Minecraft Java 1.21.8. Selecione essa versão no formulário." });
+  }
   if (!idea || idea.length > MAX_IDEA_LENGTH) {
     return res.status(400).json({ error: "Descreva a construção em até 2.000 caracteres." });
   }

@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080713">
-<meta name="description" content="Comentários, ideias e sugestões da comunidade CraftBase para Minecraft.">
-<title>Comentários — CraftBase</title>
+<meta name="description" content="Anotações de projetos de Minecraft compartilhadas publicamente pela comunidade CraftBase.">
+<title>Anotações compartilhadas — CraftBase</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 :root{--bg:#070610;--panel:#100d1b;--line:#302342;--accent:#c7adff;--text:#f7f2ff;--muted:#b4a8c7}
@@ -15,6 +15,7 @@ main{width:min(920px,92%);margin:0 auto;padding:54px 0 80px}.eyebrow{color:var(-
 .panel{margin-top:28px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(135deg,#171025,#0d0a16);padding:22px}.panel h2{font-size:17px;margin:0 0 8px}.panel p{font-size:12px;line-height:1.8;color:var(--muted);margin:0}.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:15px}.rule{padding:13px;border:1px solid #ffffff13;background:#0a0711;border-radius:10px}.rule strong{display:block;font-size:11px;margin-bottom:5px;color:#e9dcff}.rule span{display:block;font-size:10px;line-height:1.6;color:var(--muted)}
 .comments{margin-top:22px;padding:24px;border:1px solid var(--line);border-radius:15px;background:#100d1b;color:#f7f2ff;min-height:230px}.comments-head{margin-bottom:17px;color:var(--text)}.comments-head h2{margin:0 0 7px;font-size:20px}.comments-head p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}.widget{margin-top:18px}.github-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:15px;padding:11px 14px;border:1px solid var(--line);border-radius:9px;background:#171025;color:#eadfff;font-weight:800;font-size:11px}.github-link:hover{border-color:var(--accent)}
 .my-world-notes{margin-top:22px;padding:24px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(145deg,#171025,#0d0a16)}.world-notes-list{display:grid;gap:12px;margin-top:17px}.world-note{border:1px solid #3a2b4d;border-radius:11px;background:#0b0812;padding:16px}.world-note-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.world-note h3{margin:0 0 6px;font-size:14px;color:var(--text)}.world-note-meta{font-size:10px;color:var(--accent)}.world-note time{font-size:10px;color:#9b8ead;white-space:nowrap}.world-note-content{white-space:pre-wrap;overflow-wrap:anywhere;color:#e9e0f5;font-size:12px;line-height:1.8;margin:12px 0 0}.world-note-edit{display:inline-block;margin-top:12px;color:var(--accent);font-size:10px;font-weight:800}.notes-empty{border:1px dashed #4a385f;border-radius:10px;padding:19px;color:var(--muted);font-size:12px;line-height:1.8}.section-kicker{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:900;margin-bottom:8px}
+.shared-note{border:1px solid #3a2b4d;border-radius:11px;background:#0b0812;padding:17px}.shared-note-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.shared-note h3{margin:0 0 6px;font-size:15px;color:var(--text)}.shared-note-meta{font-size:10px;color:var(--accent);line-height:1.6}.shared-note time{font-size:10px;color:#9b8ead;white-space:nowrap}.shared-note-content{white-space:pre-wrap;overflow-wrap:anywhere;color:#e9e0f5;font-size:12px;line-height:1.8;margin:13px 0 0}.shared-note-footer{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.shared-note-footer a{font-size:10px;font-weight:800;color:var(--accent)}.shared-note-footer a:hover{text-decoration:underline}.refresh-error{color:#ffbac4}.detail-actions .github-link{margin:0;flex:1}
 .status{font-size:10px;color:#998eaa;margin-top:18px;line-height:1.7}.back{display:inline-block;margin-top:20px;font-size:11px;font-weight:800;color:var(--accent)}footer{border-top:1px solid #ffffff12;padding:22px 4%;text-align:center;color:#857992;font-size:10px;line-height:1.8}
 @media(max-width:760px){header{height:auto;min-height:70px}.head{padding:13px 0;align-items:flex-start;flex-direction:column;gap:12px}nav{width:100%;overflow:auto;white-space:nowrap;padding-bottom:2px;gap:15px}main{padding-top:35px}h1{letter-spacing:-2px}.rules{grid-template-columns:1fr}.panel{padding:17px}.comments{padding:17px}}
 </style>
@@ -23,66 +24,79 @@ main{width:min(920px,92%);margin:0 auto;padding:54px 0 80px}.eyebrow{color:var(-
 <header><div class="head"><a class="brand" href="./index.html">▦ CRAFT<span>BASE</span></a><nav><a href="./index.html">Início</a><a href="./catalogo.html">Construções</a><a href="./catalogo.html#catalogo">Farms</a><a href="./construcoes-gratis.html">Oficina grátis</a><a href="./meu-mundo.html">Meu Mundo</a><a class="active" href="./comentarios.html">Comentários</a><a href="./como-instalar.html">Como instalar</a></nav></div></header>
 <main>
 <div class="eyebrow">Comunidade CraftBase</div>
-<h1>Comentários e <span>ideias.</span></h1>
-<p class="intro">Veja aqui as anotações que você salvou nos projetos da aba Meu Mundo. Abaixo também existe um espaço para comentários da comunidade.</p>
+<h1>Anotações <span>compartilhadas.</span></h1>
+<p class="intro">Aqui aparecem as anotações que os jogadores escolheram compartilhar publicamente a partir do caderno de uma casa, farm ou construção em Meu Mundo.</p>
 <section class="panel">
-<h2>Suas anotações e a comunidade</h2>
-<p>Quando você abrir uma construção em Meu Mundo, escrever no bloco de notas e clicar em “Salvar anotações”, o texto aparece na lista abaixo. Essas anotações são pessoais e ficam neste navegador.</p>
+<h2>Como publicar uma anotação</h2>
+<p>Em Meu Mundo, abra o caderno de um projeto e clique em “Compartilhar publicamente”. O CraftBase prepara a publicação; revise o texto e confirme em “Submit new issue” no GitHub. Depois que ela for publicada, todos poderão ler a anotação aqui sem entrar em uma conta.</p>
 <div class="rules">
-<div class="rule"><strong>Meu Mundo</strong><span>Notas de casas, farms e construções salvas no mesmo navegador aparecem abaixo.</span></div>
-<div class="rule"><strong>Comunidade</strong><span>A discussão pública usa um serviço separado e pode exigir conta GitHub.</span></div>
-<div class="rule"><strong>Mais usuários</strong><span>Para compartilhar notas entre todos os jogadores e dispositivos, será necessário conectar um banco de dados compartilhado.</span></div>
+<div class="rule"><strong>Você escolhe</strong><span>As notas continuam privadas no seu navegador até você clicar em compartilhar.</span></div>
+<div class="rule"><strong>Público para todos</strong><span>Depois de publicar, qualquer visitante pode ver a anotação compartilhada.</span></div>
+<div class="rule"><strong>Somente o texto</strong><span>Arquivos Litematica e fotos não são anexados automaticamente à publicação.</span></div>
 </div>
+<div class="detail-actions" style="margin-top:16px"><a class="github-link" href="./meu-mundo.html">Ir para Meu Mundo e compartilhar ↗</a><button type="button" class="github-link" id="refreshSharedNotes" style="cursor:pointer">Atualizar publicações</button></div>
 </section>
 <section class="my-world-notes">
-<div class="section-kicker">Meus projetos</div>
-<div class="comments-head"><h2>Anotações do Meu Mundo</h2><p>Os textos salvos nos cadernos de casas, farms e construções aparecem aqui.</p></div>
-<div id="worldNotesList" class="world-notes-list"><div class="notes-empty">Carregando suas anotações...</div></div>
-<a class="github-link" href="./meu-mundo.html">Abrir Meu Mundo ↗</a>
+<div class="section-kicker">Mural público</div>
+<div class="comments-head"><h2>Publicações da comunidade</h2><p>As anotações são carregadas do repositório público do CraftBase.</p></div>
+<div id="sharedNotesStatus" class="status" aria-live="polite">Carregando anotações compartilhadas...</div>
+<div id="sharedNotesList" class="world-notes-list"></div>
 </section>
-<section class="comments">
-<div class="comments-head"><h2>Discussão da comunidade</h2><p>Leia e publique comentários nesta própria página. Para enviar uma mensagem, o Utterances pode solicitar que você entre com uma conta GitHub.</p></div>
-<div class="widget">
-<script src="https://utteranc.es/client.js"
-        repo="Arthue-de-Siqueira-Soma/minecraft"
-        issue-number="1"
-        theme="github-dark"
-        crossorigin="anonymous"
-        async>
-</script>
-</div>
-</section>
-<a class="github-link" href="https://github.com/Arthue-de-Siqueira-Soma/minecraft/issues/1" target="_blank" rel="noopener noreferrer">Abrir também no GitHub ↗</a>
-<p class="status">Os comentários são públicos e podem ser moderados no GitHub. Para habilitar a caixa de comentários, o proprietário do repositório precisa instalar a aplicação <a href="https://github.com/apps/utterances" target="_blank" rel="noopener noreferrer" style="color:#c7adff;text-decoration:underline">Utterances</a> neste repositório. Se a caixa não carregar, use o botão “Abrir discussão no GitHub”. Para publicar pelo site, pode ser necessário autorizar a aplicação com sua conta GitHub.</p>
 <a class="back" href="./index.html">← Voltar para o início</a>
-
-<script>
-(function(){
- const key='craftbase-world-comments-v1';
- const host=document.getElementById('worldNotesList');
- function escapeHtml(value){return String(value).replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]})}
- function renderWorldNotes(){
-  if(!host)return;
-  let entries=[];
-  try{const saved=JSON.parse(localStorage.getItem(key)||'[]');entries=Array.isArray(saved)?saved:[]}catch(e){}
-  entries=entries.filter(function(item){return item&&typeof item.text==='string'&&item.text.trim()}).sort(function(a,b){return (Number(b.updatedAt)||0)-(Number(a.updatedAt)||0)});
-  if(!entries.length){
-   host.innerHTML='<div class="notes-empty">Você ainda não tem anotações salvas aqui. Entre em <strong>Meu Mundo</strong>, abra o caderno de uma casa ou farm, escreva suas notas e clique em “Salvar anotações”. Elas aparecerão aqui.</div>';
-   return;
-  }
-  host.innerHTML=entries.map(function(item){
-   const date=Number(item.updatedAt);
-   const dateText=date&&!Number.isNaN(date)?new Date(date).toLocaleString('pt-BR'):'Data não disponível';
-   const meta=[item.category||'Projeto',item.level].filter(Boolean).join(' · ');
-   return '<article class="world-note"><div class="world-note-head"><div><h3>'+escapeHtml(item.projectName||'Projeto')+'</h3><div class="world-note-meta">'+escapeHtml(meta)+'</div></div><time>'+escapeHtml(dateText)+'</time></div><p class="world-note-content">'+escapeHtml(item.text)+'</p><a class="world-note-edit" href="./meu-mundo.html">Abrir caderno no Meu Mundo ↗</a></article>';
-  }).join('');
- }
- renderWorldNotes();
- window.addEventListener('storage',function(event){if(event.key===key)renderWorldNotes()});
-})();
-</script>
-
 </main>
 <footer>CRAFTBASE · Comunidade de Minecraft. Compartilhe ideias, ajude outros jogadores e respeite quem participa.</footer>
+<script>
+(function(){
+ const endpoint='https://api.github.com/repos/Arthue-de-Siqueira-Soma/minecraft/issues?state=all&per_page=100&sort=created&direction=desc';
+ const prefix='[CraftBase compartilhado]';
+ const startMarker='<!-- CRAFTBASE_SHARED_NOTE_V1 -->';
+ const endMarker='<!-- /CRAFTBASE_SHARED_NOTE_V1 -->';
+ const host=document.getElementById('sharedNotesList');
+ const status=document.getElementById('sharedNotesStatus');
+ const refreshButton=document.getElementById('refreshSharedNotes');
+ let busy=false;
+ function escapeHtml(value){return String(value).replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]})}
+ function formatDate(value){if(!value)return 'Data não disponível';const date=new Date(value);return Number.isNaN(date.getTime())?'Data não disponível':date.toLocaleString('pt-BR')}
+ function parseNote(issue){
+  const body=String(issue.body||'');
+  if(!body.includes(startMarker)||!body.includes(endMarker))return null;
+  const match=body.match(/### Anotações\s*\n([\s\S]*?)\n<!-- \/CRAFTBASE_SHARED_NOTE_V1 -->/);
+  if(!match)return null;
+  const text=match[1].trim();
+  if(!text)return null;
+  const getField=function(label){const line=body.match(new RegExp('\\*\\*'+label+'\\*\\*:\\s*(.*)'));return line?line[1].trim():''};
+  return {text:text,project:getField('Projeto')||issue.title.replace(prefix,'').trim(),category:getField('Categoria'),level:getField('Dificuldade')};
+ }
+ async function loadSharedNotes(){
+  if(busy)return;busy=true;
+  refreshButton.disabled=true;refreshButton.textContent='Atualizando...';
+  status.textContent='Buscando publicações públicas...';status.classList.remove('refresh-error');
+  try{
+   const response=await fetch(endpoint,{headers:{Accept:'application/vnd.github+json'}});
+   if(!response.ok)throw new Error(response.status===403?'O GitHub limitou temporariamente as consultas públicas. Tente atualizar mais tarde.':'Não foi possível carregar as publicações (HTTP '+response.status+').');
+   const issues=await response.json();
+   const entries=issues.filter(function(issue){return !issue.pull_request&&typeof issue.title==='string'&&issue.title.startsWith(prefix)}).map(function(issue){const note=parseNote(issue);return note?{issue:issue,note:note}:null}).filter(Boolean);
+   if(!entries.length){
+    host.innerHTML='<div class="notes-empty">Ainda não há anotações publicadas. Vá para <strong>Meu Mundo</strong>, abra o caderno de um projeto e use “Compartilhar publicamente”. Depois confirme a publicação no GitHub e volte aqui.</div>';
+    status.textContent='Nenhuma anotação pública encontrada nas publicações recentes do repositório.';
+   }else{
+    host.innerHTML=entries.map(function(entry){
+     const issue=entry.issue,note=entry.note;
+     const meta=[note.category,note.level].filter(Boolean).join(' · ');
+     const author=issue.user&&issue.user.login?'@'+issue.user.login:'Usuário do GitHub';
+     return '<article class="shared-note"><div class="shared-note-head"><div><h3>'+escapeHtml(note.project)+'</h3><div class="shared-note-meta">'+escapeHtml(meta||'Projeto')+' · Compartilhado por '+escapeHtml(author)+'</div></div><time>'+escapeHtml(formatDate(issue.created_at))+'</time></div><p class="shared-note-content">'+escapeHtml(note.text)+'</p><div class="shared-note-footer"><a href="'+escapeHtml(issue.html_url)+'" target="_blank" rel="noopener noreferrer">Ver publicação ↗</a></div></article>';
+    }).join('');
+    status.textContent=entries.length+' anotação(ões) compartilhada(s) carregada(s).';
+   }
+  }catch(error){
+   host.innerHTML='<div class="notes-empty">Não foi possível carregar as anotações agora. Verifique sua conexão ou tente atualizar a página.</div>';
+   status.textContent=error.message||'Erro ao buscar as publicações.';
+   status.classList.add('refresh-error');
+  }finally{busy=false;refreshButton.disabled=false;refreshButton.textContent='Atualizar publicações'}
+ }
+ refreshButton.addEventListener('click',loadSharedNotes);
+ loadSharedNotes();
+})();
+</script>
 </body>
 </html>

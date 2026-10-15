@@ -6,6 +6,7 @@ Esta etapa adiciona uma API Node.js compatível com Vercel. Ela não substitui o
 
 - `GET /api/health` — verifica se a API está respondendo.
 - `POST /api/analyze` — recebe `{ "idea": "...", "version": "1.21.8", "imageDataUrl": "data:image/png;base64,..." }` e solicita à IA uma análise da captura de tela.
+- `POST /api/generate` — recebe uma lista de blocos com coordenadas explícitas e devolve um arquivo `.litematic`. Veja o formato de entrada em [`docs/GENERATOR_API.md`](docs/GENERATOR_API.md).
 
 A API aceita JPG, PNG ou WEBP. Para evitar requisições excessivas, limita a imagem a cerca de 2,8 MB e o texto da ideia a 2.000 caracteres. A análise não gera nem promete um arquivo `.litematic`.
 
@@ -33,4 +34,4 @@ O limite por IP nesta primeira versão é apenas uma proteção de melhor esfor�
 - O endpoint ainda não tem autenticação de usuário, histórico persistente nem cobrança.
 - O CORS não substitui autenticação e não impede chamadas automatizadas fora do navegador.
 - Ainda falta ligar o formulário do site a esta API.
-- Ainda falta implementar e validar a geração de arquivos `.litematic`.
+- O gerador `.litematic` inicial foi adicionado, mas ainda precisa ser testado abrindo um arquivo real no Litematica antes de ser considerado validado. Ele recebe coordenadas explícitas e ainda não transforma automaticamente imagens ou texto em construções.

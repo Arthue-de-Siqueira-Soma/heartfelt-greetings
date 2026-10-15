@@ -208,8 +208,7 @@ $('shareNotes').addEventListener('click',()=>{
  if(url.length>7000){setDetailStatus('shareStatus','Esta anotação é longa demais para compartilhar por este formulário. Reduza o texto e tente novamente.');return}
  try{const notes=readProjectNotes();notes[currentDetailId]=$('projectNotes').value;saveAllProjectNotes(notes)}catch(e){}
  setDetailStatus('shareStatus','Abriu um formulário público do GitHub. Revise o texto e clique em “Submit new issue” para publicar; depois a anotação aparecerá na aba Comentários.');
- const opened=window.open(url,'_blank','noopener,noreferrer');
- if(!opened)setDetailStatus('shareStatus','O navegador bloqueou a nova aba. Permita pop-ups para este site e clique novamente.');
+ const link=document.createElement('a');link.href=url;link.target='_blank';link.rel='noopener noreferrer';link.click();
 });
 $('projectNotes').addEventListener('input',()=>setDetailStatus('notesStatus','Alterações não salvas — clique em “Salvar anotações”.'));
 $('schematicUpload').addEventListener('change',async e=>{

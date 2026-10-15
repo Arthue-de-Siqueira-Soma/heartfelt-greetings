@@ -28,7 +28,7 @@ Exemplo de corpo:
 - Identificadores de blocos vanilla, por exemplo `minecraft:stone`.
 - Coordenadas inteiras e sem duplicatas.
 - Os blocos usam seu estado padrão; propriedades específicas como direção de escadas ainda não são aceitas.
-- A versão NBT inicial usa formato Litematica v6 e DataVersion 3953 (Minecraft Java 1.21.1). Teste o arquivo no seu perfil de Minecraft/Litematica antes de confiar em construções importantes.
+- A versão NBT inicial usa formato Litematica v7/SubVersion 1 e DataVersion 4440 (Minecraft Java 1.21.8). Teste o arquivo no seu perfil de Minecraft/Litematica antes de confiar em construções importantes.
 
 ## O que esta etapa faz e não faz
 

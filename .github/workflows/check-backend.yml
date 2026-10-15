@@ -25,3 +25,5 @@ jobs:
           node --check api/health.js
           node --check api/analyze.js
           node --check api/generate.js
+      - name: Run generator tests
+        run: node --test tests/generate.test.js

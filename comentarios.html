@@ -64,7 +64,7 @@ main{width:min(920px,92%);margin:0 auto;padding:54px 0 80px}.eyebrow{color:var(-
   if(!match)return null;
   const text=match[1].trim();
   if(!text)return null;
-  const getField=function(label){const line=body.match(new RegExp('\\*\\*'+label+'\\*\\*:\\s*(.*)'));return line?line[1].trim():''};
+  const getField=function(label){const line=body.match(new RegExp('\\*\\*'+label+':\\*\\*\\s*(.*)'));return line?line[1].trim():''};
   return {text:text,project:getField('Projeto')||issue.title.replace(prefix,'').trim(),category:getField('Categoria'),level:getField('Dificuldade')};
  }
  async function loadSharedNotes(){

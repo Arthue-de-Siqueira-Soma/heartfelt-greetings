@@ -126,7 +126,7 @@ function sanitizeFilename(value) {
   return base || "craftbase-construcao";
 }
 
-function buildLitematic(input) {
+export function buildLitematic(input) {
   const name = typeof input.name === "string" ? input.name.trim().slice(0, 80) : "";
   const description = typeof input.description === "string"
     ? input.description.trim().slice(0, 500)

@@ -10,55 +10,63 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download real Minecraft screenshots locally
+      - name: Download and convert real Minecraft screenshots
         shell: bash
         run: |
           set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y imagemagick
           mkdir -p images
           download() {
-            path="$1"; url="$2"
-            echo "Downloading $path"
-            if ! curl -L --fail --silent --show-error --retry 2 --max-time 40 "$url" -o "$path"; then
-              rm -f "$path"
-              echo "Primary URL failed for $path"
-              return 1
-            fi
-            size=$(wc -c < "$path")
-            if [ "$size" -lt 4000 ]; then
-              rm -f "$path"
-              echo "File too small for $path"
-              return 1
+            path="$1"; shift
+            ok=0
+            for url in "$@"; do
+              tmp="$(mktemp)"
+              echo "Trying $url"
+              if curl -L --fail --silent --show-error --retry 1 --max-time 25 "$url" -o "$tmp" && [ "$(wc -c < "$tmp")" -gt 4000 ] && identify "$tmp" >/dev/null 2>&1; then
+                if convert "$tmp[0]" -strip -resize '1400x1000>' -quality 88 "$path"; then
+                  rm -f "$tmp"
+                  ok=1
+                  echo "Saved $path"
+                  break
+                fi
+              fi
+              rm -f "$tmp"
+            done
+            if [ "$ok" -ne 1 ]; then
+              echo "Could not download a valid image for $path"
+              exit 1
             fi
           }
-          download images/build-01.jpg "https://i.imgur.com/wQKmTDS.jpg" || download images/build-01.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2026/032/19576179-photo_xl.webp"
-          download images/build-02.jpg "https://i.pinimg.com/originals/f8/d5/c3/f8d5c34f0f44f725491fb80fe5380371.jpg" || download images/build-02.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2025/983/18998670_l.webp"
-          download images/build-03.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2026/032/19576179-photo_xl.webp" || download images/build-03.jpg "https://cdn.minecraft-schematics.com/pictures/27511/large-picture-27511.jpg"
-          download images/build-04.jpg "https://cdn-ak.f.st-hatena.com/images/fotolife/f/finn0219/20231111/20231111162644.jpg" || download images/build-04.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2026/191/19589477_xl.webp"
-          download images/build-05.jpg "https://www.grabcraft.com/files/products/large/large_rustic-medieval-house-1-3926.png" || download images/build-05.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2024/031/18208446_l.webp"
-          download images/build-06.jpg "https://i.pinimg.com/736x/3c/d6/d5/3cd6d52183ec83dffa1b519b556dfe85.jpg" || download images/build-06.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2021/557/14188944_xl.jpg"
-          download images/build-07.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2023/319/17419784-capture_l.jpg" || download images/build-07.jpg "https://cdn.minecraft.how/images/blog/585/best-minecraft-iron-farm-designs-for-2026-and-beyond-9.webp"
-          download images/build-08.jpg "https://fiverr-res.cloudinary.com/images/q_auto%2Cf_auto/gigs3/255873420/original/86deaea6d0459f21bb33f4707f110c9389e45e5a/build-an-iron-farm-in-minecraft.png" || download images/build-08.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2026/521/19569031_xl.webp"
-          download images/build-09.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2026/191/19589477_xl.webp" || download images/build-09.jpg "https://cdn-ak.f.st-hatena.com/images/fotolife/f/shinya_09dom/20210303/20210303083240.jpg"
-          download images/build-10.jpg "https://static.planetminecraft.com/files/resource_media/screenshot/1215/2012-04-11_201423_1957760_thumb.jpg" || download images/build-10.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2026/521/19569031_xl.webp"
-          download images/build-11.jpg "https://static.planetminecraft.com/files/resource_media/screenshot/1429/2014-07-08_0039217861951_thumb.jpg" || download images/build-11.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2023/319/17419784-capture_l.jpg"
-          download images/build-12.jpg "https://static.planetminecraft.com/files/resource_media/screenshot/1541/2015-10-11_2346509476833_thumb.jpg" || download images/build-12.jpg "https://cdn-ak.f.st-hatena.com/images/fotolife/f/shinya_09dom/20210303/20210303083240.jpg"
-          download images/build-13.jpg "https://static.planetminecraft.com/files/resource_media/screenshot/1621/2016-05-25_15363810178104_thumb.jpg" || download images/build-13.jpg "https://cdn.minecraft.how/images/blog/585/best-minecraft-iron-farm-designs-for-2026-and-beyond-9.webp"
-          download images/build-14.jpg "https://static.planetminecraft.com/files/resource_media/screenshot/1403/2013-08-13_174714_6977289_thumb.jpg" || download images/build-14.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2026/191/19589477_xl.webp"
-          download images/build-15.jpg "https://static.planetminecraft.com/files/resource_media/screenshot/2019-10-27-20-50-38_thumb.jpg" || download images/build-15.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2023/319/17419784-capture_l.jpg"
-          download images/build-16.jpg "https://static.planetminecraft.com/files/resource_media/screenshot/1811/medieval-house-large-scale-3-1000-1521095049_thumb.jpg" || download images/build-16.jpg "https://cdn.minecraft-schematics.com/pictures/27511/large-picture-27511.jpg"
-          download images/build-17.jpg "https://static.planetminecraft.com/files/resource_media/screenshot/1435/outsidemhfront8067022_thumb.jpg" || download images/build-17.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2024/031/18208446_l.webp"
-          download images/build-18.jpg "https://static.planetminecraft.com/files/resource_media/screenshot/1318/2013-05-02_120121_5368564_thumb.jpg" || download images/build-18.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2025/458/19320516_xl.webp"
-          download images/build-19.jpg "https://static.planetminecraft.com/files/resource_media/screenshot/1536/2015-09-01_1314399350853_thumb.jpg" || download images/build-19.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2025/458/19320516_xl.webp"
-          download images/build-20.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2022/349/16278005-screenshot-at-min_l.jpg" || download images/build-20.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2025/458/19320516_xl.webp"
-          download images/build-21.jpg "https://static.planetminecraft.com/files/resource_media/screenshot/1335/javaw-2013-08-27-19-17-48-94_6272388_thumb.jpg" || download images/build-21.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2024/031/18208446_l.webp"
-          download images/build-22.jpg "https://img.youtube.com/vi/sB6hJNSHOtU/maxresdefault.jpg" || download images/build-22.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2025/458/19320516_xl.webp"
-          download images/build-23.jpg "https://cdn-ak.f.st-hatena.com/images/fotolife/f/finn0219/20231111/20231111162644.jpg" || download images/build-23.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2026/191/19589477_xl.webp"
-          download images/build-24.jpg "https://ccdn.g-portal.com/large_Gallery_MC_Blog_Iron_Farm_0004_5_47d3ad1fe5.jpg" || download images/build-24.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2021/557/14188944_xl.jpg"
-          download images/build-25.jpg "https://cdn.minecraft.how/images/blog/585/best-minecraft-iron-farm-designs-for-2026-and-beyond-9.webp" || download images/build-25.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2026/521/19569031_xl.webp"
-          download images/build-26.jpg "https://cdn-ak.f.st-hatena.com/images/fotolife/s/shinya_09dom/20210303/20210303083240.jpg" || download images/build-26.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2026/191/19589477_xl.webp"
-          download images/build-27.jpg "https://i.pinimg.com/originals/63/46/75/634675bdbac9e89f4ed9d0d33b5d2ecf.png" || download images/build-27.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2026/521/19569031_xl.webp"
-          download images/build-28.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2026/521/19569031_xl.webp" || download images/build-28.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2021/557/14188944_xl.jpg"
-          download images/hero.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2021/735/14425238_l.jpg" || download images/hero.jpg "https://i.imgur.com/wQKmTDS.jpg"
+          download images/build-01.jpg "https://i.imgur.com/wQKmTDS.jpg" "https://i.pinimg.com/originals/f8/d5/c3/f8d5c34f0f44f725491fb80fe5380371.jpg" "https://www.grabcraft.com/files/products/large/large_rustic-medieval-house-1-3926.png"
+          download images/build-02.jpg "https://i.pinimg.com/originals/f8/d5/c3/f8d5c34f0f44f725491fb80fe5380371.jpg" "https://cdn.minecraft-schematics.com/pictures/27511/large-picture-27511.jpg?time=1765902029" "https://i.imgur.com/wQKmTDS.jpg"
+          download images/build-03.jpg "https://cdn.minecraft-schematics.com/pictures/27511/large-picture-27511.jpg?time=1765902029" "https://www.grabcraft.com/files/products/large/large_rustic-medieval-house-1-3926.png" "https://i.pinimg.com/736x/3c/d6/d5/3cd6d52183ec83dffa1b519b556dfe85.jpg"
+          download images/build-04.jpg "https://cdn-ak.f.st-hatena.com/images/fotolife/f/finn0219/20231111/20231111162644.jpg" "https://fiverr-res.cloudinary.com/images/q_auto%2Cf_auto/gigs3/255873420/original/86deaea6d0459f21bb33f4707f110c9389e45e5a/build-an-iron-farm-in-minecraft.png" "https://abfielder.com/Partners/PartnerUploadedImages/img_685c1ea7e148a.jpg"
+          download images/build-05.jpg "https://www.grabcraft.com/files/products/large/large_rustic-medieval-house-1-3926.png" "https://i.pinimg.com/originals/f8/d5/c3/f8d5c34f0f44f725491fb80fe5380371.jpg" "https://cdn.minecraft-schematics.com/pictures/27511/large-picture-27511.jpg?time=1765902029"
+          download images/build-06.jpg "https://i.pinimg.com/736x/3c/d6/d5/3cd6d52183ec83dffa1b519b556dfe85.jpg" "https://i.pinimg.com/736x/d7/cb/37/d7cb374357487b16c26d74446c8a7c31.jpg" "https://cdn.mos.cms.futurecdn.net/qAkSrfvdpWmRNiFWw4CC9T.jpg"
+          download images/build-07.jpg "https://abfielder.com/Partners/PartnerUploadedImages/img_685c1ea7e148a.jpg" "https://bedrockminecraft.ru/wp-content/uploads/2025/03/HowbuildCreeperfarmphoto19.png" "https://fiverr-res.cloudinary.com/images/q_auto%2Cf_auto/gigs3/255873420/original/86deaea6d0459f21bb33f4707f110c9389e45e5a/build-an-iron-farm-in-minecraft.png"
+          download images/build-08.jpg "https://fiverr-res.cloudinary.com/images/q_auto%2Cf_auto/gigs3/255873420/original/86deaea6d0459f21bb33f4707f110c9389e45e5a/build-an-iron-farm-in-minecraft.png" "https://cdn-ak.f.st-hatena.com/images/fotolife/f/finn0219/20231111/20231111162644.jpg" "https://abfielder.com/Partners/PartnerUploadedImages/img_685c1ea7e148a.jpg"
+          download images/build-09.jpg "https://minecraft-max.net/upload/resize_cache/iblock/d14/1296_729_2c5f35923b4a9202198d6281813970e62/sfr5b63atezupt4924qus92xqe3rj5c6.webp" "https://cdn.mos.cms.futurecdn.net/qAkSrfvdpWmRNiFWw4CC9T.jpg" "https://i.pinimg.com/736x/d7/cb/37/d7cb374357487b16c26d74446c8a7c31.jpg"
+          download images/build-10.jpg "https://cdn.mos.cms.futurecdn.net/qAkSrfvdpWmRNiFWw4CC9T.jpg" "https://i.pinimg.com/736x/d7/cb/37/d7cb374357487b16c26d74446c8a7c31.jpg" "https://www.grabcraft.com/files/products/large/large_rustic-medieval-house-1-3926.png"
+          download images/build-11.jpg "https://bedrockminecraft.ru/wp-content/uploads/2025/03/HowbuildCreeperfarmphoto19.png" "https://abfielder.com/Partners/PartnerUploadedImages/img_685c1ea7e148a.jpg" "https://fiverr-res.cloudinary.com/images/q_auto%2Cf_auto/gigs3/255873420/original/86deaea6d0459f21bb33f4707f110c9389e45e5a/build-an-iron-farm-in-minecraft.png"
+          download images/build-12.jpg "https://cdn-ak.f.st-hatena.com/images/fotolife/g/gulingo/20250209/20250209160758.png" "https://media.pocketgamer.com/artwork/na-15358-1670771994/minecraft-farms-automatic-crop-farm.jpg" "https://blog.kakaocdn.net/dna/YTDzT/btrNzJWL3A2/AAAAAAAAAAAAAAAAAAAAAFcKd4fWch-W5uAvjj6GdNh38X6gtqta9R3rc8rm82fa/img.png?allow_ip=&allow_referer=&credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1774969199&signature=Sw8QOCRRZ2EVygsN3mkKcwGDXqc%3D"
+          download images/build-13.jpg "https://media.pocketgamer.com/artwork/na-15358-1670771994/minecraft-farms-automatic-crop-farm.jpg" "https://cdn-ak.f.st-hatena.com/images/fotolife/g/gulingo/20250209/20250209160758.png" "https://cdn-ak.f.st-hatena.com/images/fotolife/s/shinya_09dom/20210303/20210303083240.jpg"
+          download images/build-14.jpg "https://cdn-ak.f.st-hatena.com/images/fotolife/s/shinya_09dom/20210303/20210303083240.jpg" "https://cdn-ak.f.st-hatena.com/images/fotolife/f/finn0219/20231111/20231111162644.jpg" "https://media.pocketgamer.com/artwork/na-15358-1670771994/minecraft-farms-automatic-crop-farm.jpg"
+          download images/build-15.jpg "https://cdn-ak.f.st-hatena.com/images/fotolife/g/gulingo/20250209/20250209160758.png" "https://media.pocketgamer.com/artwork/na-15358-1670771994/minecraft-farms-automatic-crop-farm.jpg" "https://cdn-ak.f.st-hatena.com/images/fotolife/s/shinya_09dom/20210303/20210303083240.jpg"
+          download images/build-16.jpg "https://i.pinimg.com/736x/d7/cb/37/d7cb374357487b16c26d74446c8a7c31.jpg" "https://cdn.mos.cms.futurecdn.net/qAkSrfvdpWmRNiFWw4CC9T.jpg" "https://i.pinimg.com/736x/3c/d6/d5/3cd6d52183ec83dffa1b519b556dfe85.jpg"
+          download images/build-17.jpg "https://cdn.mos.cms.futurecdn.net/qAkSrfvdpWmRNiFWw4CC9T.jpg" "https://minecraft-max.net/upload/resize_cache/iblock/d14/1296_729_2c5f35923b4a9202198d6281813970e62/sfr5b63atezupt4924qus92xqe3rj5c6.webp" "https://www.grabcraft.com/files/products/large/large_rustic-medieval-house-1-3926.png"
+          download images/build-18.jpg "https://minecraft-max.net/upload/resize_cache/iblock/d14/1296_729_2c5f35923b4a9202198d6281813970e62/sfr5b63atezupt4924qus92xqe3rj5c6.webp" "https://i.pinimg.com/736x/d7/cb/37/d7cb374357487b16c26d74446c8a7c31.jpg" "https://i.pinimg.com/originals/f8/d5/c3/f8d5c34f0f44f725491fb80fe5380371.jpg"
+          download images/build-19.jpg "https://cdn.mos.cms.futurecdn.net/qAkSrfvdpWmRNiFWw4CC9T.jpg" "https://minecraft-max.net/upload/resize_cache/iblock/d14/1296_729_2c5f35923b4a9202198d6281813970e62/sfr5b63atezupt4924qus92xqe3rj5c6.webp" "https://i.pinimg.com/736x/d7/cb/37/d7cb374357487b16c26d74446c8a7c31.jpg"
+          download images/build-20.jpg "https://i.pinimg.com/736x/d7/cb/37/d7cb374357487b16c26d74446c8a7c31.jpg" "https://cdn.mos.cms.futurecdn.net/qAkSrfvdpWmRNiFWw4CC9T.jpg" "https://www.grabcraft.com/files/products/large/large_rustic-medieval-house-1-3926.png"
+          download images/build-21.jpg "https://i.pinimg.com/originals/f8/d5/c3/f8d5c34f0f44f725491fb80fe5380371.jpg" "https://minecraft-max.net/upload/resize_cache/iblock/d14/1296_729_2c5f35923b4a9202198d6281813970e62/sfr5b63atezupt4924qus92xqe3rj5c6.webp" "https://cdn.minecraft-schematics.com/pictures/27511/large-picture-27511.jpg?time=1765902029"
+          download images/build-22.jpg "https://img.youtube.com/vi/sB6hJNSHOtU/maxresdefault.jpg" "https://i.imgur.com/wQKmTDS.jpg" "https://www.grabcraft.com/files/products/large/large_rustic-medieval-house-1-3926.png"
+          download images/build-23.jpg "https://cdn-ak.f.st-hatena.com/images/fotolife/f/finn0219/20231111/20231111162644.jpg" "https://fiverr-res.cloudinary.com/images/q_auto%2Cf_auto/gigs3/255873420/original/86deaea6d0459f21bb33f4707f110c9389e45e5a/build-an-iron-farm-in-minecraft.png" "https://abfielder.com/Partners/PartnerUploadedImages/img_685c1ea7e148a.jpg"
+          download images/build-24.jpg "https://ccdn.g-portal.com/large_Gallery_MC_Blog_Iron_Farm_0004_5_47d3ad1fe5.jpg" "https://cdn-ak.f.st-hatena.com/images/fotolife/f/finn0219/20231111/20231111162644.jpg" "https://fiverr-res.cloudinary.com/images/q_auto%2Cf_auto/gigs3/255873420/original/86deaea6d0459f21bb33f4707f110c9389e45e5a/build-an-iron-farm-in-minecraft.png"
+          download images/build-25.jpg "https://cdn.minecraft.how/images/blog/585/best-minecraft-iron-farm-designs-for-2026-and-beyond-9.webp" "https://ccdn.g-portal.com/large_Gallery_MC_Blog_Iron_Farm_0004_5_47d3ad1fe5.jpg" "https://cdn-ak.f.st-hatena.com/images/fotolife/f/finn0219/20231111/20231111162644.jpg"
+          download images/build-26.jpg "https://cdn-ak.f.st-hatena.com/images/fotolife/s/shinya_09dom/20210303/20210303083240.jpg" "https://cdn-ak.f.st-hatena.com/images/fotolife/f/finn0219/20231111/20231111162644.jpg" "https://fiverr-res.cloudinary.com/images/q_auto%2Cf_auto/gigs3/255873420/original/86deaea6d0459f21bb33f4707f110c9389e45e5a/build-an-iron-farm-in-minecraft.png"
+          download images/build-27.jpg "https://i.pinimg.com/originals/63/46/75/634675bdbac9e89f4ed9d0d33b5d2ecf.png" "https://abfielder.com/Partners/PartnerUploadedImages/img_685c1ea7e148a.jpg" "https://fiverr-res.cloudinary.com/images/q_auto%2Cf_auto/gigs3/255873420/original/86deaea6d0459f21bb33f4707f110c9389e45e5a/build-an-iron-farm-in-minecraft.png"
+          download images/build-28.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2026/521/19569031_xl.webp" "https://i.pinimg.com/736x/d7/cb/37/d7cb374357487b16c26d74446c8a7c31.jpg" "https://cdn.mos.cms.futurecdn.net/qAkSrfvdpWmRNiFWw4CC9T.jpg"
+          download images/hero.jpg "https://static.planetminecraft.com/files/image/minecraft/project/2021/735/14425238_l.jpg" "https://i.imgur.com/wQKmTDS.jpg" "https://cdn.minecraft-schematics.com/pictures/27511/large-picture-27511.jpg?time=1765902029"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add images/*.jpg

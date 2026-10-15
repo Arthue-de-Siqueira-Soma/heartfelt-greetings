@@ -15,6 +15,9 @@ main{width:min(1120px,92%);margin:0 auto;padding:48px 0 70px}.eyebrow{color:var(
 .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:22px 0}.filters{display:flex;gap:7px;flex-wrap:wrap}.filter,.btn{cursor:pointer;border:1px solid var(--line);border-radius:8px;padding:10px 13px;font-size:11px;font-weight:800;background:#100d1b;color:var(--muted)}.filter.active,.filter:hover{background:var(--accent);border-color:var(--accent);color:#170d27}.btn.primary{background:var(--accent);color:#170d27;border-color:var(--accent)}.btn.secondary:hover{border-color:var(--accent);color:var(--accent)}.search{background:#100d1b;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:11px 13px;min-width:210px;outline:none}.search:focus{border-color:var(--accent)}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{position:relative;min-height:205px;padding:18px;border:1px solid var(--line);border-radius:13px;background:linear-gradient(145deg,#151020,#0d0a15);display:flex;flex-direction:column;transition:.2s}.card:hover{transform:translateY(-3px);border-color:#8b6cb8}.card.done{border-color:#8f7bc1;background:linear-gradient(145deg,#201932,#100d19)}.card.done h3{text-decoration:line-through;text-decoration-color:#c7adff88;color:#bdb2ce}.card-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.emoji{width:42px;height:42px;display:grid;place-items:center;border:1px solid #ffffff15;background:#ffffff07;border-radius:10px;font-size:23px}.tag{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--accent);font-weight:900}.card h3{font-size:16px;margin:14px 0 7px}.card p{font-size:11px;line-height:1.7;color:var(--muted);margin:0 0 14px;flex:1}.materials{font-size:10px;color:#d4c7e7;border-top:1px solid #ffffff0d;padding-top:10px;margin-bottom:13px}.complete{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:1px solid #6e578d;background:#1c142b;color:#e5d9ff;border-radius:8px;padding:11px;font-size:11px;font-weight:800;cursor:pointer}.done .complete{background:#c7adff;color:#180d28;border-color:#c7adff}.complete:hover{filter:brightness(1.08)}.card-actions{display:grid;gap:7px;margin-top:8px}.remove-item,.restore-item{width:100%;border-radius:8px;padding:9px 11px;font-size:10px;font-weight:800;cursor:pointer}.remove-item{border:1px solid #654047;background:#211018;color:#ffbdc4}.remove-item:hover{border-color:#e78d98}.restore-item{border:1px solid #8b73b7;background:#20162f;color:#e1d2ff}.restore-item:hover{background:#302143}.empty{display:none;text-align:center;padding:35px;color:var(--muted);border:1px dashed var(--line);border-radius:12px;grid-column:1/-1}
 .custom{margin-top:32px;border:1px solid var(--line);border-radius:14px;background:#0f0b19;padding:20px}.custom h2{font-size:18px;margin:0 0 7px}.custom p{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 16px}.form{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px}.form input,.form select{width:100%;min-width:0;border:1px solid var(--line);background:#080610;color:var(--text);padding:12px;border-radius:8px;outline:none}.form input:focus,.form select:focus{border-color:var(--accent)}.footnote{font-size:10px;color:#8f829f;margin-top:15px;line-height:1.7}
+.open-notebook{border:1px solid #6e578d;background:#20162f;color:#eadfff;border-radius:8px;padding:10px 11px;font-size:10px;font-weight:800;cursor:pointer;width:100%}.open-notebook:hover{background:#302143;border-color:var(--accent)}
+.detail-modal[hidden]{display:none!important}.detail-modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:18px}.detail-backdrop{position:absolute;inset:0;background:#05030bdc;backdrop-filter:blur(8px)}.detail-dialog{position:relative;z-index:1;width:min(860px,100%);max-height:92vh;overflow:auto;border:1px solid #4b3865;border-radius:16px;background:linear-gradient(145deg,#171025,#0c0914);box-shadow:0 24px 90px #0009;padding:24px}.detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;border-bottom:1px solid #ffffff16;padding-bottom:16px;margin-bottom:18px}.detail-head h2{font-size:clamp(22px,4vw,30px);letter-spacing:-.7px;margin:5px 0}.detail-subtitle{color:var(--muted);font-size:11px}.detail-close{border:1px solid var(--line);background:#100d1b;color:var(--text);border-radius:9px;width:38px;height:38px;cursor:pointer;font-size:19px;flex:0 0 auto}.detail-layout{display:grid;grid-template-columns:1fr 1fr;gap:14px}.detail-section{border:1px solid var(--line);border-radius:12px;background:#0b0812;padding:16px;min-width:0}.detail-section h3{font-size:14px;margin:0 0 7px}.detail-section>p{font-size:11px;color:var(--muted);line-height:1.6;margin:0 0 12px}.detail-section textarea{width:100%;min-height:180px;resize:vertical;padding:12px;border:1px solid var(--line);border-radius:9px;background:#070610;color:var(--text);font:12px/1.65 Inter,system-ui,sans-serif;outline:none}.detail-section textarea:focus{border-color:var(--accent)}.detail-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.detail-actions .btn{flex:1}.detail-file-input{display:block;width:100%;padding:10px;border:1px dashed #57436f;border-radius:9px;background:#100c19;color:var(--muted);font-size:10px;max-width:100%}.attachment-info{margin-top:12px;padding:11px;border:1px solid #3e3050;border-radius:9px;background:#130e1f;font-size:11px;line-height:1.6;overflow-wrap:anywhere}.attachment-info strong{display:block;color:#e9dcff;margin-bottom:5px}.attachment-info .detail-actions{margin-top:8px}.attachment-preview{margin-top:12px;max-height:320px;overflow:auto;border:1px solid #3e3050;border-radius:9px;background:#06050a;display:grid;place-items:center;min-height:100px}.attachment-preview img{max-width:100%;height:auto;max-height:310px;object-fit:contain;display:block}.detail-status{font-size:10px;color:#cab7ee;min-height:15px;margin-top:9px;line-height:1.5}.detail-local-note{font-size:10px;color:#9f92b1;line-height:1.65;margin-top:16px;padding-top:13px;border-top:1px solid #ffffff12}.detail-full{grid-column:1/-1}
+@media(max-width:650px){.detail-modal{padding:8px}.detail-dialog{padding:15px;max-height:96vh}.detail-layout{grid-template-columns:1fr}.detail-full{grid-column:auto}.detail-section textarea{min-height:140px}}
 @media(max-width:780px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}nav{gap:12px}.form{grid-template-columns:1fr 1fr}.form button{grid-column:1/-1}.progress-panel{grid-template-columns:1fr auto}}
 @media(max-width:520px){header{height:auto;min-height:70px}.head{padding:13px 0;align-items:flex-start;flex-direction:column;gap:12px}nav{width:100%;overflow:auto;white-space:nowrap;padding-bottom:2px}main{padding-top:34px}h1{letter-spacing:-2px}.grid{grid-template-columns:1fr}.toolbar{align-items:stretch}.filters{width:100%}.search{width:100%}.progress-panel{padding:15px}.count{font-size:22px}.form{grid-template-columns:1fr}.form button{grid-column:auto}}
 </style>
@@ -30,6 +33,41 @@ main{width:min(1120px,92%);margin:0 auto;padding:48px 0 70px}.eyebrow{color:var(
 <div class="grid" id="grid"></div>
 <section class="custom"><h2>Adicionar estrutura personalizada</h2><p>Inclua qualquer construção que você queira fazer no seu mapa.</p><form class="form" id="customForm"><input id="customName" maxlength="70" placeholder="Nome da estrutura (ex.: Armazém)" required><select id="customCategory" aria-label="Categoria"><option>Base</option><option>Farms</option><option>Decoração</option><option>Exploração</option><option>Redstone</option></select><select id="customLevel" aria-label="Dificuldade"><option>Fácil</option><option>Médio</option><option>Difícil</option></select><button class="btn primary" type="submit">＋ Adicionar à lista</button></form><div class="footnote">A lista e as marcações são guardadas apenas neste navegador usando armazenamento local. Limpar os dados do navegador pode apagar seu progresso.</div></section>
 </main>
+
+<div class="detail-modal" id="detailModal" hidden>
+  <div class="detail-backdrop" data-close-detail></div>
+  <section class="detail-dialog" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <div class="detail-head">
+      <div><div class="eyebrow">Caderno do projeto</div><h2 id="detailTitle">Projeto</h2><div class="detail-subtitle" id="detailSubtitle"></div></div>
+      <button type="button" class="detail-close" id="closeDetail" aria-label="Fechar caderno">×</button>
+    </div>
+    <div class="detail-layout">
+      <section class="detail-section">
+        <h3>Bloco de notas</h3>
+        <p>Anote coordenadas, materiais que faltam, instruções, melhorias e lembretes desta construção.</p>
+        <textarea id="projectNotes" maxlength="20000" placeholder="Ex.: coordenadas X: 120, Y: 64, Z: -230&#10;Materiais que faltam...&#10;O que quero melhorar..."></textarea>
+        <div class="detail-actions"><button type="button" class="btn primary" id="saveNotes">Salvar anotações</button></div>
+        <div class="detail-status" id="notesStatus" aria-live="polite"></div>
+      </section>
+      <section class="detail-section">
+        <h3>Arquivo Litematica</h3>
+        <p>Anexe o esquema usado para construir esta estrutura. Formatos aceitos: .litematic, .schem e .nbt.</p>
+        <input class="detail-file-input" id="schematicUpload" type="file" accept=".litematic,.schem,.nbt">
+        <div id="schematicAttachment"></div>
+        <div class="detail-status" id="schematicStatus" aria-live="polite"></div>
+      </section>
+      <section class="detail-section detail-full">
+        <h3>Foto de como ficou</h3>
+        <p>Adicione uma captura de tela do Minecraft para guardar o resultado junto deste projeto.</p>
+        <input class="detail-file-input" id="photoUpload" type="file" accept="image/*">
+        <div id="photoAttachment"></div>
+        <div class="detail-status" id="photoStatus" aria-live="polite"></div>
+      </section>
+    </div>
+    <div class="detail-local-note">As anotações, os arquivos Litematica e as fotos ficam salvos neste navegador e dispositivo. Eles não são enviados ao GitHub nem sincronizados automaticamente com outros aparelhos. Faça cópias dos arquivos originais para evitar perdas.</div>
+  </section>
+</div>
+
 <script>
 const defaults=[
 {id:'starter-house',name:'Casa inicial',category:'Base',level:'Fácil',emoji:'🏠',desc:'Um abrigo confortável para os primeiros dias, com espaço para cama, baús e bancada.',materials:'Madeira, pedra, vidro, porta e iluminação.'},
@@ -81,11 +119,106 @@ function render(){
   const matchFilter=activeFilter==='deleted'?isDeleted:(activeFilter==='all'||(activeFilter==='pending'&&!status)||(activeFilter==='done'&&status)||x.category===activeFilter||x.level===activeFilter);
   return matchFilter&&(x.name+' '+x.category+' '+(x.desc||'')).toLocaleLowerCase('pt-BR').includes(term);
  });
- $('grid').innerHTML=filtered.map(x=>{const isDone=completed.has(x.id),isDeleted=deleted.has(x.id);const actions=isDeleted?'<button class="restore-item" data-action="restore" data-id="'+escapeHtml(x.id)+'">↶ Restaurar à minha lista</button>':'<button class="complete" data-action="toggle" data-id="'+escapeHtml(x.id)+'">'+(isDone?'✓ Concluída — marcar como pendente':'○ Marcar como concluída')+'</button><button class="remove-item" data-action="remove" data-id="'+escapeHtml(x.id)+'">Excluir da minha lista</button>';return '<article class="card '+(isDone?'done ':'')+(isDeleted?'removed':'')+'"><div class="card-top"><div class="emoji">'+(x.emoji||'🧱')+'</div><span class="tag">'+escapeHtml(x.category)+(x.level?' · '+escapeHtml(x.level):'')+'</span></div><h3>'+escapeHtml(x.name)+'</h3><p>'+escapeHtml(x.desc||'Estrutura personalizada adicionada por você.')+'</p><div class="materials">'+escapeHtml(x.materials||'Materiais a definir conforme o projeto.')+'</div><div class="card-actions">'+actions+'</div></article>'}).join('');
+ $('grid').innerHTML=filtered.map(x=>{const isDone=completed.has(x.id),isDeleted=deleted.has(x.id);const actions=isDeleted?'<button class="restore-item" data-action="restore" data-id="'+escapeHtml(x.id)+'">↶ Restaurar à minha lista</button>':'<button class="open-notebook" data-action="open" data-id="'+escapeHtml(x.id)+'">▤ Abrir caderno do projeto</button><button class="complete" data-action="toggle" data-id="'+escapeHtml(x.id)+'">'+(isDone?'✓ Concluída — marcar como pendente':'○ Marcar como concluída')+'</button><button class="remove-item" data-action="remove" data-id="'+escapeHtml(x.id)+'">Excluir da minha lista</button>';return '<article class="card '+(isDone?'done ':'')+(isDeleted?'removed':'')+'"><div class="card-top"><div class="emoji">'+(x.emoji||'🧱')+'</div><span class="tag">'+escapeHtml(x.category)+(x.level?' · '+escapeHtml(x.level):'')+'</span></div><h3>'+escapeHtml(x.name)+'</h3><p>'+escapeHtml(x.desc||'Estrutura personalizada adicionada por você.')+'</p><div class="materials">'+escapeHtml(x.materials||'Materiais a definir conforme o projeto.')+'</div><div class="card-actions">'+actions+'</div></article>'}).join('');
  if(!filtered.length)$('grid').innerHTML='<div class="empty" style="display:block">'+(activeFilter==='deleted'?'Você ainda não excluiu nenhuma estrutura.':'Nenhuma estrutura encontrada. Tente outro nome ou adicione uma estrutura personalizada.')+'</div>';
- $('grid').querySelectorAll('[data-action]').forEach(btn=>btn.addEventListener('click',()=>{const id=btn.dataset.id,action=btn.dataset.action;const item=allItems(true).find(x=>x.id===id);if(!item)return;if(action==='toggle'){if(completed.has(id))completed.delete(id);else completed.add(id)}else if(action==='remove'){if(!confirm('Excluir "'+item.name+'" da sua lista? Você poderá restaurar pela opção Excluídas.'))return;deleted.add(id)}else if(action==='restore'){deleted.delete(id)}persist();render()}));
+ $('grid').querySelectorAll('[data-action]').forEach(btn=>btn.addEventListener('click',async()=>{const id=btn.dataset.id,action=btn.dataset.action;const item=allItems(true).find(x=>x.id===id);if(!item)return;if(action==='toggle'){if(completed.has(id))completed.delete(id);else completed.add(id);persist();render()}else if(action==='remove'){if(!confirm('Excluir "'+item.name+'" da sua lista? Você poderá restaurar pela opção Excluídas.'))return;deleted.add(id);persist();render()}else if(action==='restore'){deleted.delete(id);persist();render()}else if(action==='open'){await openProjectNotebook(item)}}));
 }
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+const projectNotesKey='craftbase-project-notes-v1';
+const filesDbName='craftbase-project-attachments-v1';
+let currentDetailId=null;
+let currentPhotoUrl=null;
+function readProjectNotes(){try{return JSON.parse(localStorage.getItem(projectNotesKey)||'{}')||{}}catch(e){return {}}}
+function saveAllProjectNotes(notes){localStorage.setItem(projectNotesKey,JSON.stringify(notes))}
+function openAttachmentsDB(){return new Promise((resolve,reject)=>{if(!window.indexedDB){reject(new Error('Este navegador não oferece armazenamento local de arquivos.'));return}const request=indexedDB.open(filesDbName,1);request.onupgradeneeded=()=>{if(!request.result.objectStoreNames.contains('attachments'))request.result.createObjectStore('attachments',{keyPath:'key'})};request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error||new Error('Não foi possível abrir o armazenamento de arquivos.'))})}
+function attachmentRequest(mode,operation){return openAttachmentsDB().then(db=>new Promise((resolve,reject)=>{const tx=db.transaction('attachments',mode),store=tx.objectStore('attachments');let result;let failed=false;let request;try{request=operation(store)}catch(e){db.close();reject(e);return}if(request){request.onsuccess=()=>{result=request.result};request.onerror=()=>{failed=true;db.close();reject(request.error||new Error('Falha ao acessar o arquivo.'))}}tx.oncomplete=()=>{db.close();if(!failed)resolve(result)};tx.onerror=()=>{db.close();if(!failed)reject(tx.error||new Error('Falha ao salvar o arquivo.'))};tx.onabort=()=>{db.close();if(!failed)reject(tx.error||new Error('Armazenamento cancelado.'))}}))}
+function getAttachment(key){return attachmentRequest('readonly',store=>store.get(key))}
+function putAttachment(record){return attachmentRequest('readwrite',store=>store.put(record))}
+function deleteAttachment(key){return attachmentRequest('readwrite',store=>store.delete(key))}
+function setDetailStatus(id,message){$(id).textContent=message}
+function downloadBlob(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name||'arquivo';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)}
+function safeFileName(name){return String(name||'arquivo').replace(/[\\/:*?"<>|]/g,'_')}
+function renderAttachmentCard(containerId,record,kind){
+ const container=$(containerId);
+ if(!record){container.innerHTML='<div class="attachment-info">Nenhum '+(kind==='photo'?'print anexado':'arquivo anexado')+' ainda.</div>';return}
+ if(kind==='photo'){
+  if(currentPhotoUrl)URL.revokeObjectURL(currentPhotoUrl);
+  currentPhotoUrl=URL.createObjectURL(record.blob);
+  container.innerHTML='<div class="attachment-info"><strong>'+escapeHtml(record.name)+'</strong><div class="attachment-preview"><img id="savedProjectPhoto" alt="Foto de como ficou a construção"></div><div class="detail-actions"><button type="button" class="btn secondary" data-attachment-download="photo">Baixar foto</button><button type="button" class="btn secondary" data-attachment-delete="photo">Remover foto</button></div></div>';
+  $('savedProjectPhoto').src=currentPhotoUrl;
+ }else{
+  container.innerHTML='<div class="attachment-info"><strong>'+escapeHtml(record.name)+'</strong>Arquivo anexado ao projeto.<div class="detail-actions"><button type="button" class="btn secondary" data-attachment-download="schematic">Baixar arquivo</button><button type="button" class="btn secondary" data-attachment-delete="schematic">Remover arquivo</button></div></div>';
+ }
+}
+async function refreshProjectAttachments(id){
+ try{
+  const schematic=await getAttachment('schematic:'+id);
+  if(currentDetailId!==id)return;
+  renderAttachmentCard('schematicAttachment',schematic,'schematic');
+  const photo=await getAttachment('photo:'+id);
+  if(currentDetailId!==id)return;
+  renderAttachmentCard('photoAttachment',photo,'photo');
+  setDetailStatus('schematicStatus','');
+  setDetailStatus('photoStatus','');
+ }catch(error){
+  setDetailStatus('schematicStatus','Não foi possível acessar os anexos neste navegador.');
+  setDetailStatus('photoStatus',error.message||'Falha ao carregar foto.');
+ }
+}
+async function openProjectNotebook(item){
+ currentDetailId=item.id;
+ $('detailTitle').textContent=item.name;
+ $('detailSubtitle').textContent=(item.category||'Projeto')+(item.level?' · '+item.level:'')+' — '+(item.desc||'Anotações e arquivos deste projeto.');
+ const notes=readProjectNotes();
+ $('projectNotes').value=typeof notes[item.id]==='string'?notes[item.id]:'';
+ setDetailStatus('notesStatus','');
+ setDetailStatus('schematicStatus','Carregando anexo...');
+ setDetailStatus('photoStatus','Carregando foto...');
+ $('schematicUpload').value='';$('photoUpload').value='';
+ $('detailModal').hidden=false;
+ document.body.style.overflow='hidden';
+ await refreshProjectAttachments(item.id);
+ $('closeDetail').focus();
+}
+function closeProjectNotebook(){
+ $('detailModal').hidden=true;
+ document.body.style.overflow='';
+ currentDetailId=null;
+ if(currentPhotoUrl){URL.revokeObjectURL(currentPhotoUrl);currentPhotoUrl=null}
+}
+$('closeDetail').addEventListener('click',closeProjectNotebook);
+$('detailModal').querySelectorAll('[data-close-detail]').forEach(el=>el.addEventListener('click',closeProjectNotebook));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('detailModal').hidden)closeProjectNotebook()});
+$('saveNotes').addEventListener('click',()=>{
+ if(!currentDetailId)return;
+ try{const notes=readProjectNotes();notes[currentDetailId]=$('projectNotes').value;saveAllProjectNotes(notes);setDetailStatus('notesStatus','Anotações salvas neste navegador.')}
+ catch(e){setDetailStatus('notesStatus','Não foi possível salvar. O armazenamento do navegador pode estar cheio.')}
+});
+$('projectNotes').addEventListener('input',()=>setDetailStatus('notesStatus','Alterações não salvas — clique em “Salvar anotações”.'));
+$('schematicUpload').addEventListener('change',async e=>{
+ const file=e.target.files&&e.target.files[0];if(!file||!currentDetailId)return;
+ const extension=file.name.toLowerCase().split('.').pop();
+ if(!['litematic','schem','nbt'].includes(extension)){setDetailStatus('schematicStatus','Escolha um arquivo .litematic, .schem ou .nbt.');e.target.value='';return}
+ const id=currentDetailId;
+ setDetailStatus('schematicStatus','Salvando arquivo...');
+ try{await putAttachment({key:'schematic:'+id,name:safeFileName(file.name),type:file.type||'application/octet-stream',blob:file,updatedAt:Date.now()});if(currentDetailId===id){await refreshProjectAttachments(id);setDetailStatus('schematicStatus','Arquivo salvo neste navegador.')}}catch(error){setDetailStatus('schematicStatus','Não foi possível guardar o arquivo. O espaço do navegador pode ser insuficiente.')}finally{e.target.value=''}
+});
+$('photoUpload').addEventListener('change',async e=>{
+ const file=e.target.files&&e.target.files[0];if(!file||!currentDetailId)return;
+ if(!file.type.startsWith('image/')){setDetailStatus('photoStatus','Escolha um arquivo de imagem.');e.target.value='';return}
+ const id=currentDetailId;
+ setDetailStatus('photoStatus','Salvando foto...');
+ try{await putAttachment({key:'photo:'+id,name:safeFileName(file.name),type:file.type,blob:file,updatedAt:Date.now()});if(currentDetailId===id){await refreshProjectAttachments(id);setDetailStatus('photoStatus','Foto salva neste navegador.')}}catch(error){setDetailStatus('photoStatus','Não foi possível guardar a foto. Tente uma imagem menor ou verifique o espaço disponível.')}finally{e.target.value=''}
+});
+$('detailModal').addEventListener('click',async e=>{
+ const downloadButton=e.target.closest('[data-attachment-download]');
+ const deleteButton=e.target.closest('[data-attachment-delete]');
+ if(!currentDetailId)return;
+ if(downloadButton){const kind=downloadButton.dataset.attachmentDownload;try{const record=await getAttachment(kind+':'+currentDetailId);if(record)downloadBlob(record.blob,record.name);else setDetailStatus(kind==='photo'?'photoStatus':'schematicStatus','Arquivo não encontrado.')}catch(error){setDetailStatus(kind==='photo'?'photoStatus':'schematicStatus','Não foi possível baixar o arquivo.')}return}
+ if(deleteButton){const kind=deleteButton.dataset.attachmentDelete;const label=kind==='photo'?'foto':'arquivo Litematica';if(!confirm('Remover '+label+' deste projeto?'))return;try{await deleteAttachment(kind+':'+currentDetailId);await refreshProjectAttachments(currentDetailId);setDetailStatus(kind==='photo'?'photoStatus':'schematicStatus','Anexo removido.')}catch(error){setDetailStatus(kind==='photo'?'photoStatus':'schematicStatus','Não foi possível remover o anexo.')}}
+});
+
 $('filters').querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{activeFilter=btn.dataset.filter;$('filters').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b===btn));render()}));
 $('search').addEventListener('input',render);
 $('customForm').addEventListener('submit',e=>{e.preventDefault();const name=$('customName').value.trim();if(!name)return;const id='custom-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);custom.push({id,name,category:$('customCategory').value,level:$('customLevel').value,emoji:'🧱',desc:'Estrutura personalizada adicionada por você. Marque como concluída quando terminar.',materials:'Materiais a definir conforme o projeto.'});persist();$('customName').value='';activeFilter='all';$('filters').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));render()});

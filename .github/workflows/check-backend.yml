@@ -6,10 +6,14 @@ on:
       - "api/**"
       - "tests/**"
       - "scripts/**"
+      - "docs/**"
+      - "BACKEND_SETUP.md"
       - ".github/workflows/check-backend.yml"
   pull_request:
     paths:
       - "api/**"
+      - "tests/**"
+      - "scripts/**"
       - ".github/workflows/check-backend.yml"
 
 jobs:
@@ -27,8 +31,11 @@ jobs:
           node --check api/health.js
           node --check api/analyze.js
           node --check api/generate.js
-      - name: Run generator tests
-        run: node --test tests/generate.test.js
+          node --check api/create.js
+      - name: Run generator and AI-plan tests
+        run: |
+          node --test tests/generate.test.js
+          node --test tests/create.test.js
       - name: Generate demo schematic
         run: node scripts/create-demo-schematic.js
       - name: Upload demo schematic

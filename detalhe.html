@@ -16,6 +16,21 @@ nav{display:flex;gap:24px;font-size:12px;color:var(--muted);font-weight:700}nav 
 .wrap{width:min(1100px,92%);margin:auto}.back{display:inline-block;color:var(--muted);font-size:12px;font-weight:700;margin:30px 0 22px}.back:hover{color:var(--green)}
 .detail{display:grid;grid-template-columns:1.08fr .92fr;gap:32px;align-items:start;padding-bottom:70px}.image-wrap{overflow:hidden;border:1px solid var(--line);border-radius:14px;background:var(--panel);position:sticky;top:100px}.image-wrap img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}.info{border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#18231b,#111813);padding:clamp(20px,4vw,34px)}.tag{display:inline-block;color:var(--mint);border:1px solid #416442;border-radius:99px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase}.info h1{font-size:clamp(30px,4vw,48px);letter-spacing:-2px;line-height:1.05;margin:17px 0 12px}.desc{color:var(--muted);font-size:14px;line-height:1.9}.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:23px 0}.fact{padding:13px;border:1px solid var(--line);border-radius:8px;background:#ffffff04}.fact small{display:block;font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:7px}.fact strong{font-size:12px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);border-radius:8px;padding:12px 15px;font-size:11px;font-weight:800;cursor:pointer}.primary{background:var(--green);color:#11200e;border-color:var(--green)}.secondary{background:#ffffff05}.note{border:1px solid #5a4b2c;background:#211d13;color:#e6d5a7;padding:15px 17px;border-radius:9px;font-size:11px;line-height:1.8;margin-top:18px}.not-found{padding:60px 0;text-align:center}.footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:10px}.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
 @media(max-width:760px){nav{display:none}.detail{grid-template-columns:1fr;gap:16px}.image-wrap{position:static}.info h1{letter-spacing:-1px}.pill{font-size:9px}}
+
+/* CRAFTBASE NIGHT SKY — lunar edition */
+:root{--bg:#070817;--panel:#111326;--panel2:#191b35;--line:#303052;--green:#c5c3ff;--mint:#e1dfff;--muted:#aaaac9;--text:#f5f4ff}
+html,body{background:#070817}
+body{background:radial-gradient(ellipse at 75% -10%,#29234d 0,transparent 36%),radial-gradient(ellipse at 12% 55%,#121e42 0,transparent 42%),#070817}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.62;background-image:radial-gradient(1px 1px at 7% 18%,#fff 99%,transparent),radial-gradient(1.5px 1.5px at 17% 71%,#c9d7ff 99%,transparent),radial-gradient(1px 1px at 29% 33%,#fff 99%,transparent),radial-gradient(2px 2px at 39% 12%,#d8d2ff 99%,transparent),radial-gradient(1px 1px at 48% 83%,#fff 99%,transparent),radial-gradient(1.5px 1.5px at 58% 25%,#fff 99%,transparent),radial-gradient(1px 1px at 69% 63%,#c9d7ff 99%,transparent),radial-gradient(2px 2px at 78% 16%,#fff 99%,transparent),radial-gradient(1px 1px at 88% 48%,#fff 99%,transparent),radial-gradient(1.5px 1.5px at 95% 78%,#d8d2ff 99%,transparent);animation:starDrift 20s ease-in-out infinite alternate}
+header{background:#080817f2;border-bottom-color:#c6c5ff20}
+.logo{background:#c5c3ff;color:#101126;box-shadow:0 0 22px #9e9cff2a;border-color:#e1dfff}
+nav a:hover,.brand span{color:#c5c3ff}
+.pill{border-color:#aaa7ff55;color:#e1dfff}
+.detail-card,.info-card,.note,.panel{background:linear-gradient(145deg,#17182f,#0e1022);border-color:#323253}
+.btn.primary{background:linear-gradient(135deg,#e1e0ff,#aaa8ff);color:#15152d}
+@keyframes starDrift{from{transform:translate3d(0,0,0);opacity:.4}to{transform:translate3d(0,-8px,0);opacity:.72}}
+@media(prefers-reduced-motion:reduce){body::before{animation:none}}
+
 </style>
 </head>
 <body>

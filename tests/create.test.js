@@ -44,6 +44,6 @@ test("rejects plans with missing names or too many blocks", () => {
   assert.throws(() => normalizeBuildPlan({ blocks: [{ x: 0, y: 0, z: 0, block: "minecraft:stone" }] }), /nome/i);
   assert.throws(() => normalizeBuildPlan({
     name: "Teste",
-    blocks: Array.from({ length: 2001 }, (_, x) => ({ x: x % 24, y: Math.floor(x / 24) % 24, z: Math.floor(x / 576), block: "minecraft:stone" }))
-  }), /2.000 blocos/i);
+    blocks: Array.from({ length: 601 }, (_, x) => ({ x: x % 24, y: Math.floor(x / 24) % 24, z: Math.floor(x / 576), block: "minecraft:stone" }))
+  }), /600 blocos/i);
 });

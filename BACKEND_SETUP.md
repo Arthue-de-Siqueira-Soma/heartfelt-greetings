@@ -19,7 +19,7 @@ Esta etapa adiciona uma API Node.js compatível com Vercel. Ela não substitui o
    - Opcional: `OPENAI_VISION_MODEL`: `gpt-4.1-mini`
 4. Faça o deploy e teste `https://SEU-DOMINIO.vercel.app/api/health`. Deve retornar JSON com `"ok": true`.
 5. Nunca coloque a chave da OpenAI no HTML, JavaScript do navegador, GitHub Pages ou neste repositório. Cadastre-a somente como variável secreta na Vercel.
-6. O site ainda precisa ser configurado para chamar a URL real da Vercel. Enquanto o backend não estiver implantado e a URL não estiver ligada ao formulário, o site publicado não consegue executar a análise/geração.
+6. Depois do deploy, abra `criar-construcao.html` no repositório e edite a meta tag `name="craftbase-api-base"` para colocar a URL base da Vercel, por exemplo `https://seu-projeto.vercel.app` (sem `/api`). O formulário já está preparado para chamar `/api/create`. Enquanto a URL estiver vazia, nenhuma imagem será enviada e o site explicará que o backend ainda não está conectado.
 
 ## Custos e segurança
 

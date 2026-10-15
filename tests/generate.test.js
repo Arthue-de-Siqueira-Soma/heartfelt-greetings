@@ -108,8 +108,8 @@ test("creates a gzip-compressed NBT schematic with expected dimensions and block
   assert.equal(result.totalBlocks, 4);
 
   const root = parseRootNbt(gunzipSync(result.file));
-  assert.equal(root.Version, 6);
-  assert.equal(root.MinecraftDataVersion, 3953);
+  assert.equal(root.Version, 7);
+  assert.equal(root.MinecraftDataVersion, 4440);
   assert.equal(root.Metadata.Name, "Mini plataforma");
   assert.equal(root.Metadata.TotalBlocks, 4);
   assert.deepEqual(root.Metadata.EnclosingSize, { x: 2, y: 1, z: 2 });

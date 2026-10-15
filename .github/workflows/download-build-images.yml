@@ -74,5 +74,6 @@ jobs:
             echo "No image changes to commit."
           else
             git commit -m "Add real Minecraft construction photos [skip image sync]"
+            git pull --rebase origin "$(git branch --show-current)"
             git push
           fi

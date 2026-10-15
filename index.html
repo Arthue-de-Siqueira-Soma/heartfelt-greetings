@@ -37,6 +37,26 @@ p{color:#f0f2e9;font-size:clamp(14px,1.35vw,17px);line-height:1.85;max-width:580
 .highlights{display:flex;gap:22px;flex-wrap:wrap;margin-top:36px;color:#e7ecdf;font-size:11px;font-weight:600}.highlights span:before{content:"✓";color:var(--green);margin-right:8px}
 @media(max-width:760px){header{padding:0 5%;height:72px}nav{display:none}.pill{font-size:9px}.hero{padding:125px 6% 65px;background-position:58% center}h1{letter-spacing:-3px}.highlights{gap:13px}}
 @media(max-width:420px){.pill{padding:8px 9px}.logo{width:34px;height:34px}h1{font-size:46px}}
+
+/* CRAFTBASE NIGHT SKY — lunar edition */
+:root{--green:#c9c8ff;--text:#f5f3ff;--muted:#c5c4dc}
+html,body{background:#070817}
+body{background:radial-gradient(ellipse at 72% 8%,#29234d 0,transparent 38%),radial-gradient(ellipse at 10% 70%,#121e42 0,transparent 45%),#070817}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.7;background-image:radial-gradient(1px 1px at 7% 18%,#fff 99%,transparent),radial-gradient(1.5px 1.5px at 17% 71%,#c9d7ff 99%,transparent),radial-gradient(1px 1px at 29% 33%,#fff 99%,transparent),radial-gradient(2px 2px at 39% 12%,#d8d2ff 99%,transparent),radial-gradient(1px 1px at 48% 83%,#fff 99%,transparent),radial-gradient(1.5px 1.5px at 58% 25%,#fff 99%,transparent),radial-gradient(1px 1px at 69% 63%,#c9d7ff 99%,transparent),radial-gradient(2px 2px at 78% 16%,#fff 99%,transparent),radial-gradient(1px 1px at 88% 48%,#fff 99%,transparent),radial-gradient(1.5px 1.5px at 95% 78%,#d8d2ff 99%,transparent),radial-gradient(1px 1px at 24% 92%,#fff 99%,transparent),radial-gradient(1px 1px at 83% 91%,#fff 99%,transparent);background-size:100% 100%;animation:starDrift 18s ease-in-out infinite alternate}
+body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 80% 20%,#8c7bff13,transparent 42%),linear-gradient(180deg,#06071330,#090b20aa)}
+header{background:linear-gradient(180deg,#080817e8,transparent);border-color:#c6c5ff24}
+.logo{background:#c9c8ff;color:#101126;box-shadow:0 0 24px #9e9cff30}
+nav a:hover{color:#c9c8ff}
+.pill{border-color:#aaa7ff55;color:#e3e0ff;background:#a39dff10}
+.hero{background-image:linear-gradient(90deg,rgba(5,6,20,.78) 0%,rgba(7,8,24,.48) 48%,rgba(7,8,24,.12) 100%),linear-gradient(0deg,#070817 0%,transparent 36%),url('./images/hero.jpg');background-size:cover;background-position:center}
+.eyebrow{color:#d4d1ff}
+h1 span,.highlights span{color:#d2d0ff}
+.btn.primary{background:linear-gradient(135deg,#e1e0ff,#aaa8ff);color:#15152d;box-shadow:0 8px 30px #8e8aff22}
+.btn.primary:hover{box-shadow:0 12px 40px #8e8aff45;transform:translateY(-2px)}
+.btn.secondary{border-color:#c4c2ff55;background:#ffffff09}
+@keyframes starDrift{from{transform:translate3d(0,0,0);opacity:.45}to{transform:translate3d(0,-8px,0);opacity:.8}}
+@media(prefers-reduced-motion:reduce){body::before{animation:none}}
+
 </style>
 </head>
 <body>

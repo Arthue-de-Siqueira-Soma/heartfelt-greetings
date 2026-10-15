@@ -2,7 +2,7 @@ import { buildLitematic } from "./generate.js";
 
 const MAX_IMAGE_CHARS = 3_800_000;
 const MAX_IDEA_LENGTH = 2_000;
-const MAX_BLOCKS = 2_000;
+const MAX_BLOCKS = 600;
 const MAX_AXIS = 24;
 const ALLOWED_MIME_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
 const requestCounts = globalThis.__craftbaseCreateCounts ?? new Map();
@@ -73,7 +73,7 @@ export function normalizeBuildPlan(plan) {
   const description = typeof plan.description === "string" ? plan.description.trim().slice(0, 500) : "";
   const summary = typeof plan.summary === "string" ? plan.summary.trim().slice(0, 1_200) : "";
   if (!name || !Array.isArray(plan.blocks) || plan.blocks.length < 1 || plan.blocks.length > MAX_BLOCKS) {
-    throw new Error("O projeto precisa ter nome e uma lista de 1 a 2.000 blocos.");
+    throw new Error("O projeto precisa ter nome e uma lista de 1 a 600 blocos.");
   }
 
   const seen = new Set();
@@ -105,8 +105,6 @@ const PLAN_SCHEMA = {
     summary: { type: "string" },
     blocks: {
       type: "array",
-      minItems: 1,
-      maxItems: MAX_BLOCKS,
       items: {
         type: "object",
         additionalProperties: false,
@@ -167,7 +165,7 @@ export default async function handler(req, res) {
       "IMPORTANTE: uma captura de tela não revela coordenadas exatas, profundidade, blocos ocultos ou orientação completa. Não tente reproduzir o terreno inteiro. Gere um schematic autônomo, colocado na origem local (0,0,0), que o jogador possa posicionar manualmente com Litematica.",
       "Produza um projeto pequeno, útil e reconhecível, não uma plataforma genérica. Prefira uma casa/base/estrutura completa com fundação, paredes, entradas, telhado e detalhes de acordo com a ideia.",
       "Use somente blocos vanilla com identificadores minecraft:..., sem mods. Não use minecraft:air; omita posições vazias. Não repita coordenadas.",
-      "Todas as coordenadas x, y, z devem ser inteiros entre 0 e 23. Use y=0 para a base da construção. O volume deve caber em 24x24x24 e a lista deve conter no máximo 2.000 blocos.",
+      "Todas as coordenadas x, y, z devem ser inteiros entre 0 e 23. Use y=0 para a base da construção. O volume deve caber em 24x24x24 e a lista deve conter no máximo 600 blocos.",
       "Escolha estados padrão dos blocos; esta primeira versão não suporta direção de escadas, portas, slabs ou outras propriedades especiais. Evite blocos que dependam de propriedades para fazer sentido; prefira blocos completos como stone_bricks, oak_planks, glass, cobblestone, logs, leaves e lanterns.",
       "Retorne somente o JSON que corresponda ao esquema: name, description, summary e blocks (cada item com x, y, z, block). A descrição e o resumo devem estar em português brasileiro.",
       `Versão informada: ${version}`,
@@ -182,7 +180,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: process.env.OPENAI_VISION_MODEL || "gpt-4.1-mini",
-        max_output_tokens: 12_000,
+        max_output_tokens: 10_000,
         store: false,
         text: {
           format: {

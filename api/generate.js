@@ -141,8 +141,8 @@ function buildLitematic(input) {
   const blocks = [];
 
   for (const item of rawBlocks) {
-    if (!item || !Number.isInteger(item.x) || !Number.isInteger(item.y) || !Number.isInteger(item.z)) {
-      throw new Error("Cada bloco precisa ter coordenadas inteiras x, y e z.");
+    if (!item || !Number.isSafeInteger(item.x) || !Number.isSafeInteger(item.y) || !Number.isSafeInteger(item.z)) {
+      throw new Error("Cada bloco precisa ter coordenadas inteiras seguras x, y e z.");
     }
 
     const block = typeof item.block === "string" ? item.block.trim() : "";
@@ -156,12 +156,22 @@ function buildLitematic(input) {
     blocks.push({ x: item.x, y: item.y, z: item.z, block });
   }
 
-  const minX = Math.min(...blocks.map((b) => b.x));
-  const minY = Math.min(...blocks.map((b) => b.y));
-  const minZ = Math.min(...blocks.map((b) => b.z));
-  const maxX = Math.max(...blocks.map((b) => b.x));
-  const maxY = Math.max(...blocks.map((b) => b.y));
-  const maxZ = Math.max(...blocks.map((b) => b.z));
+  // Use a loop instead of spreading up to 50,000 coordinates into Math.min/max.
+  let minX = blocks[0].x;
+  let minY = blocks[0].y;
+  let minZ = blocks[0].z;
+  let maxX = blocks[0].x;
+  let maxY = blocks[0].y;
+  let maxZ = blocks[0].z;
+
+  for (const block of blocks) {
+    minX = Math.min(minX, block.x);
+    minY = Math.min(minY, block.y);
+    minZ = Math.min(minZ, block.z);
+    maxX = Math.max(maxX, block.x);
+    maxY = Math.max(maxY, block.y);
+    maxZ = Math.max(maxZ, block.z);
+  }
 
   const sizeX = maxX - minX + 1;
   const sizeY = maxY - minY + 1;
@@ -228,6 +238,7 @@ function buildLitematic(input) {
     Buffer.from([10]),
     nbtString(""),
     tagInt("Version", 6),
+    tagInt("SubVersion", 0),
     tagInt("MinecraftDataVersion", 3953),
     metadata,
     tagCompound("Regions", [region]),

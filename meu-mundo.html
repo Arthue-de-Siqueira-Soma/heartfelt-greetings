@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080713">
+<title>Meu Mundo — CraftBase</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+:root{--bg:#070610;--panel:#100d1b;--line:#302342;--accent:#c7adff;--text:#f7f2ff;--muted:#b4a8c7}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 75% 0%,#24123c 0,transparent 38%),var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif}a{color:inherit;text-decoration:none}button,input,select{font:inherit}
+header{height:76px;position:sticky;top:0;z-index:5;background:#090713ed;backdrop-filter:blur(15px);border-bottom:1px solid #ffffff16}.head{width:min(1120px,92%);height:100%;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-weight:900;letter-spacing:-.5px}.brand span{color:var(--accent)}nav{display:flex;gap:22px;font-size:12px;font-weight:700;color:var(--muted)}nav a:hover,nav a.active{color:var(--accent)}
+main{width:min(1120px,92%);margin:0 auto;padding:48px 0 70px}.eyebrow{color:var(--accent);font-size:10px;font-weight:900;letter-spacing:2px;text-transform:uppercase}h1{font-size:clamp(36px,6vw,62px);letter-spacing:-3px;line-height:1;margin:13px 0}h1 span{color:var(--accent)}.intro{color:var(--muted);font-size:14px;line-height:1.8;max-width:650px}
+.progress-panel{margin:28px 0 30px;padding:20px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(130deg,#171025,#0d0a16);display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}.progress-top{display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:800}.progress-top span:last-child{color:var(--accent)}.track{height:8px;background:#2a2039;border-radius:99px;overflow:hidden;margin-top:13px}.bar{height:100%;width:0;background:linear-gradient(90deg,#8d6bd4,#d8c5ff);border-radius:99px;transition:width .25s}.count{font-size:27px;font-weight:900;color:var(--accent);white-space:nowrap}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:22px 0}.filters{display:flex;gap:7px;flex-wrap:wrap}.filter,.btn{cursor:pointer;border:1px solid var(--line);border-radius:8px;padding:10px 13px;font-size:11px;font-weight:800;background:#100d1b;color:var(--muted)}.filter.active,.filter:hover{background:var(--accent);border-color:var(--accent);color:#170d27}.btn.primary{background:var(--accent);color:#170d27;border-color:var(--accent)}.btn.secondary:hover{border-color:var(--accent);color:var(--accent)}.search{background:#100d1b;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:11px 13px;min-width:210px;outline:none}.search:focus{border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{position:relative;min-height:205px;padding:18px;border:1px solid var(--line);border-radius:13px;background:linear-gradient(145deg,#151020,#0d0a15);display:flex;flex-direction:column;transition:.2s}.card:hover{transform:translateY(-3px);border-color:#8b6cb8}.card.done{border-color:#8f7bc1;background:linear-gradient(145deg,#201932,#100d19)}.card.done h3{text-decoration:line-through;text-decoration-color:#c7adff88;color:#bdb2ce}.card-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.emoji{width:42px;height:42px;display:grid;place-items:center;border:1px solid #ffffff15;background:#ffffff07;border-radius:10px;font-size:23px}.tag{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--accent);font-weight:900}.card h3{font-size:16px;margin:14px 0 7px}.card p{font-size:11px;line-height:1.7;color:var(--muted);margin:0 0 14px;flex:1}.materials{font-size:10px;color:#d4c7e7;border-top:1px solid #ffffff0d;padding-top:10px;margin-bottom:13px}.complete{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:1px solid #6e578d;background:#1c142b;color:#e5d9ff;border-radius:8px;padding:11px;font-size:11px;font-weight:800;cursor:pointer}.done .complete{background:#c7adff;color:#180d28;border-color:#c7adff}.complete:hover{filter:brightness(1.08)}.empty{display:none;text-align:center;padding:35px;color:var(--muted);border:1px dashed var(--line);border-radius:12px;grid-column:1/-1}
+.custom{margin-top:32px;border:1px solid var(--line);border-radius:14px;background:#0f0b19;padding:20px}.custom h2{font-size:18px;margin:0 0 7px}.custom p{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 16px}.form{display:grid;grid-template-columns:1fr 1fr auto;gap:10px}.form input,.form select{width:100%;min-width:0;border:1px solid var(--line);background:#080610;color:var(--text);padding:12px;border-radius:8px;outline:none}.form input:focus,.form select:focus{border-color:var(--accent)}.footnote{font-size:10px;color:#8f829f;margin-top:15px;line-height:1.7}
+@media(max-width:780px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}nav{gap:12px}.form{grid-template-columns:1fr 1fr}.form button{grid-column:1/-1}.progress-panel{grid-template-columns:1fr auto}}
+@media(max-width:520px){header{height:auto;min-height:70px}.head{padding:13px 0;align-items:flex-start;flex-direction:column;gap:12px}nav{width:100%;overflow:auto;white-space:nowrap;padding-bottom:2px}main{padding-top:34px}h1{letter-spacing:-2px}.grid{grid-template-columns:1fr}.toolbar{align-items:stretch}.filters{width:100%}.search{width:100%}.progress-panel{padding:15px}.count{font-size:22px}.form{grid-template-columns:1fr}.form button{grid-column:auto}}
+</style>
+</head>
+<body>
+<header><div class="head"><a class="brand" href="./index.html">▦ CRAFT<span>BASE</span></a><nav><a href="./index.html">Início</a><a href="./catalogo.html">Construções</a><a href="./construcoes-gratis.html">Oficina grátis</a><a class="active" href="./meu-mundo.html">Meu Mundo</a><a href="./como-instalar.html">Como instalar</a></nav></div></header>
+<main>
+<div class="eyebrow">Seu mundo, seus projetos</div>
+<h1>Plano de <span>construção.</span></h1>
+<p class="intro">Monte sua lista de projetos para o mundo Minecraft e marque cada estrutura quando terminar. Seu progresso fica salvo neste navegador, mesmo se você fechar a página.</p>
+<section class="progress-panel" aria-label="Progresso geral"><div><div class="progress-top"><span>PROGRESSO DO MUNDO</span><span id="progressLabel">0% concluído</span></div><div class="track"><div class="bar" id="progressBar"></div></div></div><div class="count"><span id="doneCount">0</span>/<span id="totalCount">0</span></div></section>
+<div class="toolbar"><div class="filters" id="filters"><button class="filter active" data-filter="all">Todas</button><button class="filter" data-filter="pending">Pendentes</button><button class="filter" data-filter="done">Concluídas</button><button class="filter" data-filter="Base">Base</button><button class="filter" data-filter="Farms">Farms</button><button class="filter" data-filter="Decoração">Decoração</button><button class="filter" data-filter="Exploração">Exploração</button></div><input id="search" class="search" placeholder="Buscar estrutura..." aria-label="Buscar estrutura"></div>
+<div class="grid" id="grid"></div>
+<section class="custom"><h2>Adicionar estrutura personalizada</h2><p>Inclua qualquer construção que você queira fazer no seu mapa.</p><form class="form" id="customForm"><input id="customName" maxlength="70" placeholder="Nome da estrutura (ex.: Armazém)" required><select id="customCategory" aria-label="Categoria"><option>Base</option><option>Farms</option><option>Decoração</option><option>Exploração</option><option>Redstone</option></select><button class="btn primary" type="submit">＋ Adicionar à lista</button></form><div class="footnote">A lista e as marcações são guardadas apenas neste navegador usando armazenamento local. Limpar os dados do navegador pode apagar seu progresso.</div></section>
+</main>
+<script>
+const defaults=[
+{id:'starter-house',name:'Casa inicial',category:'Base',emoji:'🏠',desc:'Um abrigo confortável para os primeiros dias, com espaço para cama, baús e bancada.',materials:'Madeira, pedra, vidro, porta e iluminação.'},
+{id:'main-base',name:'Base principal',category:'Base',emoji:'🏰',desc:'Uma construção maior para organizar seus itens, equipamentos e futuras expansões.',materials:'Pedra, madeira, vidro e blocos decorativos.'},
+{id:'storage',name:'Armazém organizado',category:'Base',emoji:'📦',desc:'Área com baús separados por tipo de item e espaço para futuras melhorias.',materials:'Baús, placas ou molduras, madeira e iluminação.'},
+{id:'enchanting',name:'Sala de encantamentos',category:'Base',emoji:'📚',desc:'Um espaço dedicado à mesa de encantamentos e às estantes para maximizar os níveis.',materials:'Mesa de encantamentos, estantes, livros e obsidiana.'},
+{id:'iron-farm',name:'Farm de ferro',category:'Farms',emoji:'⛏️',desc:'Uma estrutura para produzir ferro automaticamente. Confira um projeto compatível com sua versão.',materials:'Blocos de construção, camas, funis e itens do projeto escolhido.'},
+{id:'crop-farm',name:'Plantação automática',category:'Farms',emoji:'🌾',desc:'Uma farm para colher alimentos e manter um estoque constante de recursos.',materials:'Terra, água, sementes, redstone e mecanismos conforme o projeto.'},
+{id:'mob-farm',name:'Farm de mobs',category:'Farms',emoji:'🧟',desc:'Uma estrutura para coletar drops de criaturas hostis com eficiência.',materials:'Blocos, alçapões, funis e iluminação para controle de spawn.'},
+{id:'sugarcane',name:'Farm de cana-de-açúcar',category:'Farms',emoji:'🎋',desc:'Produção de cana para papel, livros e foguetes.',materials:'Cana, água, areia ou terra, pistões e observadores.'},
+{id:'villager-hall',name:'Centro de trocas',category:'Farms',emoji:'🧑‍🌾',desc:'Espaço organizado para aldeões, bancadas de profissão e trocas.',materials:'Camas, bancadas, blocos e iluminação.'},
+{id:'nether-portal',name:'Área do portal do Nether',category:'Exploração',emoji:'🟪',desc:'Uma entrada segura e decorada para suas viagens entre dimensões.',materials:'Obsidiana, pederneira e aço e blocos decorativos.'},
+{id:'mine-entrance',name:'Entrada da mina',category:'Exploração',emoji:'🪨',desc:'Entrada sinalizada e iluminada para a sua área de mineração.',materials:'Pedra, escadas, tochas, trilhos opcionais e suportes.'},
+{id:'watchtower',name:'Torre de vigia',category:'Exploração',emoji:'🗼',desc:'Um ponto alto para observar os arredores e localizar lugares importantes.',materials:'Madeira ou pedra, escadas, cercas e lanternas.'},
+{id:'bridge',name:'Ponte decorativa',category:'Decoração',emoji:'🌉',desc:'Conecte as margens de rios ou desfiladeiros com uma ponte temática.',materials:'Tábuas, escadas, lajes, cercas e lanternas.'},
+{id:'garden',name:'Jardim central',category:'Decoração',emoji:'🌳',desc:'Um espaço verde com caminhos, árvores, flores e bancos.',materials:'Folhas, flores, caminhos, lanternas e bancos decorativos.'},
+{id:'beacon',name:'Monumento do beacon',category:'Decoração',emoji:'💠',desc:'Crie um ponto de referência visual para sua base e organize a área ao redor.',materials:'Blocos para a pirâmide, beacon e decoração.'},
+{id:'redstone-room',name:'Sala de redstone',category:'Redstone',emoji:'⚙️',desc:'Uma oficina para mecanismos, circuitos e testes de automação.',materials:'Redstone, repetidores, comparadores, pistões e alavancas.'}
+];
+const storageKey='craftbase-world-planner-v1';
+let saved={};try{saved=JSON.parse(localStorage.getItem(storageKey)||'{}')||{}}catch(e){saved={}}
+let custom=Array.isArray(saved.custom)?saved.custom:[];
+let completed=new Set(Array.isArray(saved.completed)?saved.completed:[]);
+let activeFilter='all';
+const $=id=>document.getElementById(id);
+function allItems(){return [...defaults,...custom]}
+function persist(){try{localStorage.setItem(storageKey,JSON.stringify({completed:[...completed],custom}))}catch(e){}}
+function render(){
+ const items=allItems(), done=items.filter(x=>completed.has(x.id)).length, pct=items.length?Math.round(done/items.length*100):0;
+ $('doneCount').textContent=done;$('totalCount').textContent=items.length;$('progressLabel').textContent=pct+'% concluído';$('progressBar').style.width=pct+'%';
+ const term=$('search').value.trim().toLocaleLowerCase('pt-BR');
+ const filtered=items.filter(x=>{
+  const status=completed.has(x.id);
+  const matchFilter=activeFilter==='all'||(activeFilter==='pending'&&!status)||(activeFilter==='done'&&status)||x.category===activeFilter;
+  return matchFilter&&(x.name+' '+x.category+' '+x.desc).toLocaleLowerCase('pt-BR').includes(term);
+ });
+ $('grid').innerHTML=filtered.map(x=>{const isDone=completed.has(x.id);return '<article class="card '+(isDone?'done':'')+'"><div class="card-top"><div class="emoji">'+(x.emoji||'🧱')+'</div><span class="tag">'+escapeHtml(x.category)+'</span></div><h3>'+escapeHtml(x.name)+'</h3><p>'+escapeHtml(x.desc||'Estrutura personalizada para construir no seu mundo.')+'</p><div class="materials">'+escapeHtml(x.materials||'Materiais a definir conforme o projeto.')+'</div><button class="complete" data-id="'+escapeHtml(x.id)+'">'+(isDone?'✓ Concluída — marcar como pendente':'○ Marcar como concluída')+'</button></article>'}).join('');
+ if(!filtered.length)$('grid').innerHTML='<div class="empty" style="display:block">Nenhuma estrutura encontrada. Tente outro nome ou adicione uma estrutura personalizada.</div>';
+ $('grid').querySelectorAll('[data-id]').forEach(btn=>btn.addEventListener('click',()=>{const id=btn.dataset.id;if(completed.has(id))completed.delete(id);else completed.add(id);persist();render()}));
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+$('filters').querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{activeFilter=btn.dataset.filter;$('filters').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b===btn));render()}));
+$('search').addEventListener('input',render);
+$('customForm').addEventListener('submit',e=>{e.preventDefault();const name=$('customName').value.trim();if(!name)return;const id='custom-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);custom.push({id,name,category:$('customCategory').value,emoji:'🧱',desc:'Estrutura personalizada adicionada por você. Marque como concluída quando terminar.',materials:'Materiais a definir conforme o projeto.'});persist();$('customName').value='';activeFilter='all';$('filters').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));render()});
+render();
+</script>
+</body>
+</html>

@@ -46,8 +46,9 @@ main{width:min(1120px,92%);margin:0 auto;padding:48px 0 70px}.eyebrow{color:var(
         <h3>Bloco de notas</h3>
         <p>Anote coordenadas, materiais que faltam, instruções, melhorias e lembretes desta construção.</p>
         <textarea id="projectNotes" maxlength="20000" placeholder="Ex.: coordenadas X: 120, Y: 64, Z: -230&#10;Materiais que faltam...&#10;O que quero melhorar..."></textarea>
-        <div class="detail-actions"><button type="button" class="btn primary" id="saveNotes">Salvar anotações</button></div>
+        <div class="detail-actions"><button type="button" class="btn primary" id="saveNotes">Salvar anotações</button><button type="button" class="btn secondary" id="shareNotes">Compartilhar publicamente</button></div>
         <div class="detail-status" id="notesStatus" aria-live="polite"></div>
+        <div class="detail-status" id="shareStatus" aria-live="polite">Compartilhar publica esta anotação na aba Comentários. A publicação é pública.</div>
       </section>
       <section class="detail-section">
         <h3>Arquivo Litematica</h3>
@@ -64,7 +65,7 @@ main{width:min(1120px,92%);margin:0 auto;padding:48px 0 70px}.eyebrow{color:var(
         <div class="detail-status" id="photoStatus" aria-live="polite"></div>
       </section>
     </div>
-    <div class="detail-local-note">As anotações, os arquivos Litematica e as fotos ficam salvos neste navegador e dispositivo. Eles não são enviados ao GitHub nem sincronizados automaticamente com outros aparelhos. Faça cópias dos arquivos originais para evitar perdas.</div>
+    <div class="detail-local-note">Por padrão, suas anotações, arquivos Litematica e fotos ficam salvos neste navegador. Ao clicar em “Compartilhar publicamente”, somente o texto da anotação será preparado para publicação pública no GitHub; você ainda precisará confirmar a publicação lá. Arquivos e fotos não são compartilhados automaticamente.</div>
   </section>
 </div>
 
@@ -131,25 +132,6 @@ let currentDetailId=null;
 let currentPhotoUrl=null;
 function readProjectNotes(){try{return JSON.parse(localStorage.getItem(projectNotesKey)||'{}')||{}}catch(e){return {}}}
 function saveAllProjectNotes(notes){localStorage.setItem(projectNotesKey,JSON.stringify(notes))}
-const worldCommentsKey='craftbase-world-comments-v1';
-function readWorldComments(){try{const value=JSON.parse(localStorage.getItem(worldCommentsKey)||'[]');return Array.isArray(value)?value:[]}catch(e){return []}}
-function syncWorldCommentForProject(item,text){
- const comments=readWorldComments();
- const index=comments.findIndex(comment=>comment.projectId===item.id);
- const note=String(text||'').trim();
- if(!note){if(index!==-1)comments.splice(index,1)}
- else{
-  const record={projectId:item.id,projectName:item.name||item.id,category:item.category||'Projeto',level:item.level||'',text:String(text),updatedAt:Date.now()};
-  if(index===-1)comments.unshift(record);else comments[index]=record;
- }
- localStorage.setItem(worldCommentsKey,JSON.stringify(comments));
-}
-function syncExistingWorldNotes(){
- const notes=readProjectNotes();
- for(const item of allItems(true)){
-  if(Object.prototype.hasOwnProperty.call(notes,item.id))syncWorldCommentForProject(item,typeof notes[item.id]==='string'?notes[item.id]:'');
- }
-}
 function openAttachmentsDB(){return new Promise((resolve,reject)=>{if(!window.indexedDB){reject(new Error('Este navegador não oferece armazenamento local de arquivos.'));return}const request=indexedDB.open(filesDbName,1);request.onupgradeneeded=()=>{if(!request.result.objectStoreNames.contains('attachments'))request.result.createObjectStore('attachments',{keyPath:'key'})};request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error||new Error('Não foi possível abrir o armazenamento de arquivos.'))})}
 function attachmentRequest(mode,operation){return openAttachmentsDB().then(db=>new Promise((resolve,reject)=>{const tx=db.transaction('attachments',mode),store=tx.objectStore('attachments');let result;let failed=false;let request;try{request=operation(store)}catch(e){db.close();reject(e);return}if(request){request.onsuccess=()=>{result=request.result};request.onerror=()=>{failed=true;db.close();reject(request.error||new Error('Falha ao acessar o arquivo.'))}}tx.oncomplete=()=>{db.close();if(!failed)resolve(result)};tx.onerror=()=>{db.close();if(!failed)reject(tx.error||new Error('Falha ao salvar o arquivo.'))};tx.onabort=()=>{db.close();if(!failed)reject(tx.error||new Error('Armazenamento cancelado.'))}}))}
 function getAttachment(key){return attachmentRequest('readonly',store=>store.get(key))}
@@ -211,13 +193,23 @@ $('detailModal').querySelectorAll('[data-close-detail]').forEach(el=>el.addEvent
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('detailModal').hidden)closeProjectNotebook()});
 $('saveNotes').addEventListener('click',()=>{
  if(!currentDetailId)return;
- try{
-  const notes=readProjectNotes();notes[currentDetailId]=$('projectNotes').value;saveAllProjectNotes(notes);
-  const item=allItems(true).find(project=>project.id===currentDetailId);
-  if(item)syncWorldCommentForProject(item,$('projectNotes').value);
-  setDetailStatus('notesStatus','Anotações salvas e exibidas na aba Comentários neste navegador.');
- }
+ try{const notes=readProjectNotes();notes[currentDetailId]=$('projectNotes').value;saveAllProjectNotes(notes);setDetailStatus('notesStatus','Anotações salvas apenas neste navegador. Use “Compartilhar publicamente” para publicá-las.')}
  catch(e){setDetailStatus('notesStatus','Não foi possível salvar. O armazenamento do navegador pode estar cheio.')}
+});
+$('shareNotes').addEventListener('click',()=>{
+ if(!currentDetailId)return;
+ const item=allItems(true).find(project=>project.id===currentDetailId);
+ if(!item){setDetailStatus('shareStatus','Não foi possível identificar este projeto.');return}
+ const text=$('projectNotes').value.trim();
+ if(!text){setDetailStatus('shareStatus','Escreva uma anotação antes de compartilhar.');return}
+ const title='[CraftBase compartilhado] '+item.name;
+ const body='<!-- CRAFTBASE_SHARED_NOTE_V1 -->\n\n**Projeto:** '+item.name+'\n\n**Categoria:** '+(item.category||'Projeto')+'\n\n**Dificuldade:** '+(item.level||'Não definida')+'\n\n### Anotações\n\n'+text+'\n\n<!-- /CRAFTBASE_SHARED_NOTE_V1 -->\n\n*Publicado publicamente pelo CraftBase.*';
+ const url='https://github.com/Arthue-de-Siqueira-Soma/minecraft/issues/new?'+new URLSearchParams({title,body}).toString();
+ if(url.length>7000){setDetailStatus('shareStatus','Esta anotação é longa demais para compartilhar por este formulário. Reduza o texto e tente novamente.');return}
+ try{const notes=readProjectNotes();notes[currentDetailId]=$('projectNotes').value;saveAllProjectNotes(notes)}catch(e){}
+ setDetailStatus('shareStatus','Abriu um formulário público do GitHub. Revise o texto e clique em “Submit new issue” para publicar; depois a anotação aparecerá na aba Comentários.');
+ const opened=window.open(url,'_blank','noopener,noreferrer');
+ if(!opened)setDetailStatus('shareStatus','O navegador bloqueou a nova aba. Permita pop-ups para este site e clique novamente.');
 });
 $('projectNotes').addEventListener('input',()=>setDetailStatus('notesStatus','Alterações não salvas — clique em “Salvar anotações”.'));
 $('schematicUpload').addEventListener('change',async e=>{
@@ -246,7 +238,6 @@ $('detailModal').addEventListener('click',async e=>{
 $('filters').querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{activeFilter=btn.dataset.filter;$('filters').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b===btn));render()}));
 $('search').addEventListener('input',render);
 $('customForm').addEventListener('submit',e=>{e.preventDefault();const name=$('customName').value.trim();if(!name)return;const id='custom-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);custom.push({id,name,category:$('customCategory').value,level:$('customLevel').value,emoji:'🧱',desc:'Estrutura personalizada adicionada por você. Marque como concluída quando terminar.',materials:'Materiais a definir conforme o projeto.'});persist();$('customName').value='';activeFilter='all';$('filters').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));render()});
-try{syncExistingWorldNotes()}catch(e){}
 render();
 </script>
 </body>

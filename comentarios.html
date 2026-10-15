@@ -14,6 +14,7 @@ header{height:76px;position:sticky;top:0;z-index:5;background:#090713ed;backdrop
 main{width:min(920px,92%);margin:0 auto;padding:54px 0 80px}.eyebrow{color:var(--accent);font-size:10px;font-weight:900;letter-spacing:2px;text-transform:uppercase}h1{font-size:clamp(36px,6vw,62px);letter-spacing:-3px;line-height:1;margin:13px 0}h1 span{color:var(--accent)}.intro{color:var(--muted);font-size:14px;line-height:1.8;max-width:720px}
 .panel{margin-top:28px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(135deg,#171025,#0d0a16);padding:22px}.panel h2{font-size:17px;margin:0 0 8px}.panel p{font-size:12px;line-height:1.8;color:var(--muted);margin:0}.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:15px}.rule{padding:13px;border:1px solid #ffffff13;background:#0a0711;border-radius:10px}.rule strong{display:block;font-size:11px;margin-bottom:5px;color:#e9dcff}.rule span{display:block;font-size:10px;line-height:1.6;color:var(--muted)}
 .comments{margin-top:22px;padding:24px;border:1px solid var(--line);border-radius:15px;background:#100d1b;color:#f7f2ff;min-height:230px}.comments-head{margin-bottom:17px;color:var(--text)}.comments-head h2{margin:0 0 7px;font-size:20px}.comments-head p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}.widget{margin-top:18px}.github-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:15px;padding:11px 14px;border:1px solid var(--line);border-radius:9px;background:#171025;color:#eadfff;font-weight:800;font-size:11px}.github-link:hover{border-color:var(--accent)}
+.my-world-notes{margin-top:22px;padding:24px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(145deg,#171025,#0d0a16)}.world-notes-list{display:grid;gap:12px;margin-top:17px}.world-note{border:1px solid #3a2b4d;border-radius:11px;background:#0b0812;padding:16px}.world-note-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.world-note h3{margin:0 0 6px;font-size:14px;color:var(--text)}.world-note-meta{font-size:10px;color:var(--accent)}.world-note time{font-size:10px;color:#9b8ead;white-space:nowrap}.world-note-content{white-space:pre-wrap;overflow-wrap:anywhere;color:#e9e0f5;font-size:12px;line-height:1.8;margin:12px 0 0}.world-note-edit{display:inline-block;margin-top:12px;color:var(--accent);font-size:10px;font-weight:800}.notes-empty{border:1px dashed #4a385f;border-radius:10px;padding:19px;color:var(--muted);font-size:12px;line-height:1.8}.section-kicker{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:900;margin-bottom:8px}
 .status{font-size:10px;color:#998eaa;margin-top:18px;line-height:1.7}.back{display:inline-block;margin-top:20px;font-size:11px;font-weight:800;color:var(--accent)}footer{border-top:1px solid #ffffff12;padding:22px 4%;text-align:center;color:#857992;font-size:10px;line-height:1.8}
 @media(max-width:760px){header{height:auto;min-height:70px}.head{padding:13px 0;align-items:flex-start;flex-direction:column;gap:12px}nav{width:100%;overflow:auto;white-space:nowrap;padding-bottom:2px;gap:15px}main{padding-top:35px}h1{letter-spacing:-2px}.rules{grid-template-columns:1fr}.panel{padding:17px}.comments{padding:17px}}
 </style>
@@ -23,15 +24,21 @@ main{width:min(920px,92%);margin:0 auto;padding:54px 0 80px}.eyebrow{color:var(-
 <main>
 <div class="eyebrow">Comunidade CraftBase</div>
 <h1>Comentários e <span>ideias.</span></h1>
-<p class="intro">Este é o espaço para reunir comentários, dúvidas, sugestões de novas farms e construções, avisos de problemas e ideias para melhorar o CraftBase. A conversa é compartilhada com todos os visitantes.</p>
+<p class="intro">Veja aqui as anotações que você salvou nos projetos da aba Meu Mundo. Abaixo também existe um espaço para comentários da comunidade.</p>
 <section class="panel">
-<h2>Como funciona</h2>
-<p>Os comentários são guardados em uma conversa pública ligada ao repositório do CraftBase, em vez de ficarem salvos apenas no seu navegador. Assim, a discussão pode continuar mesmo quando mais pessoas começarem a usar o site.</p>
+<h2>Suas anotações e a comunidade</h2>
+<p>Quando você abrir uma construção em Meu Mundo, escrever no bloco de notas e clicar em “Salvar anotações”, o texto aparece na lista abaixo. Essas anotações são pessoais e ficam neste navegador.</p>
 <div class="rules">
-<div class="rule"><strong>Compartilhado</strong><span>Todos os visitantes veem a mesma conversa e as mensagens publicadas.</span></div>
-<div class="rule"><strong>Conta GitHub</strong><span>Para publicar ou responder, entre com sua conta GitHub no sistema de comentários.</span></div>
-<div class="rule"><strong>Respeito à comunidade</strong><span>Não publique senhas, dados pessoais nem conteúdo ofensivo. As mensagens são públicas.</span></div>
+<div class="rule"><strong>Meu Mundo</strong><span>Notas de casas, farms e construções salvas no mesmo navegador aparecem abaixo.</span></div>
+<div class="rule"><strong>Comunidade</strong><span>A discussão pública usa um serviço separado e pode exigir conta GitHub.</span></div>
+<div class="rule"><strong>Mais usuários</strong><span>Para compartilhar notas entre todos os jogadores e dispositivos, será necessário conectar um banco de dados compartilhado.</span></div>
 </div>
+</section>
+<section class="my-world-notes">
+<div class="section-kicker">Meus projetos</div>
+<div class="comments-head"><h2>Anotações do Meu Mundo</h2><p>Os textos salvos nos cadernos de casas, farms e construções aparecem aqui.</p></div>
+<div id="worldNotesList" class="world-notes-list"><div class="notes-empty">Carregando suas anotações...</div></div>
+<a class="github-link" href="./meu-mundo.html">Abrir Meu Mundo ↗</a>
 </section>
 <section class="comments">
 <div class="comments-head"><h2>Discussão da comunidade</h2><p>Leia e publique comentários nesta própria página. Para enviar uma mensagem, o Utterances pode solicitar que você entre com uma conta GitHub.</p></div>
@@ -48,6 +55,33 @@ main{width:min(920px,92%);margin:0 auto;padding:54px 0 80px}.eyebrow{color:var(-
 <a class="github-link" href="https://github.com/Arthue-de-Siqueira-Soma/minecraft/issues/1" target="_blank" rel="noopener noreferrer">Abrir também no GitHub ↗</a>
 <p class="status">Os comentários são públicos e podem ser moderados no GitHub. Para habilitar a caixa de comentários, o proprietário do repositório precisa instalar a aplicação <a href="https://github.com/apps/utterances" target="_blank" rel="noopener noreferrer" style="color:#c7adff;text-decoration:underline">Utterances</a> neste repositório. Se a caixa não carregar, use o botão “Abrir discussão no GitHub”. Para publicar pelo site, pode ser necessário autorizar a aplicação com sua conta GitHub.</p>
 <a class="back" href="./index.html">← Voltar para o início</a>
+
+<script>
+(function(){
+ const key='craftbase-world-comments-v1';
+ const host=document.getElementById('worldNotesList');
+ function escapeHtml(value){return String(value).replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]})}
+ function renderWorldNotes(){
+  if(!host)return;
+  let entries=[];
+  try{const saved=JSON.parse(localStorage.getItem(key)||'[]');entries=Array.isArray(saved)?saved:[]}catch(e){}
+  entries=entries.filter(function(item){return item&&typeof item.text==='string'&&item.text.trim()}).sort(function(a,b){return (Number(b.updatedAt)||0)-(Number(a.updatedAt)||0)});
+  if(!entries.length){
+   host.innerHTML='<div class="notes-empty">Você ainda não tem anotações salvas aqui. Entre em <strong>Meu Mundo</strong>, abra o caderno de uma casa ou farm, escreva suas notas e clique em “Salvar anotações”. Elas aparecerão aqui.</div>';
+   return;
+  }
+  host.innerHTML=entries.map(function(item){
+   const date=Number(item.updatedAt);
+   const dateText=date&&!Number.isNaN(date)?new Date(date).toLocaleString('pt-BR'):'Data não disponível';
+   const meta=[item.category||'Projeto',item.level].filter(Boolean).join(' · ');
+   return '<article class="world-note"><div class="world-note-head"><div><h3>'+escapeHtml(item.projectName||'Projeto')+'</h3><div class="world-note-meta">'+escapeHtml(meta)+'</div></div><time>'+escapeHtml(dateText)+'</time></div><p class="world-note-content">'+escapeHtml(item.text)+'</p><a class="world-note-edit" href="./meu-mundo.html">Abrir caderno no Meu Mundo ↗</a></article>';
+  }).join('');
+ }
+ renderWorldNotes();
+ window.addEventListener('storage',function(event){if(event.key===key)renderWorldNotes()});
+})();
+</script>
+
 </main>
 <footer>CRAFTBASE · Comunidade de Minecraft. Compartilhe ideias, ajude outros jogadores e respeite quem participa.</footer>
 </body>

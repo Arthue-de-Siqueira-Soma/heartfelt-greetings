@@ -6,6 +6,10 @@ on:
       - "api/**"
       - "tests/**"
       - "scripts/**"
+      - "construcoes-gratis.html"
+      - "index.html"
+      - "catalogo.html"
+      - "criar-construcao.html"
       - "docs/**"
       - "BACKEND_SETUP.md"
       - ".github/workflows/check-backend.yml"
@@ -14,6 +18,10 @@ on:
       - "api/**"
       - "tests/**"
       - "scripts/**"
+      - "construcoes-gratis.html"
+      - "index.html"
+      - "catalogo.html"
+      - "criar-construcao.html"
       - ".github/workflows/check-backend.yml"
 
 jobs:
@@ -26,6 +34,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Check free browser builder syntax
+        run: node scripts/check-browser-builder.js
       - name: Check API JavaScript syntax
         run: |
           node --check api/health.js

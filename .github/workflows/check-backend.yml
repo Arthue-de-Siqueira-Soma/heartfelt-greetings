@@ -5,6 +5,7 @@ on:
     paths:
       - "api/**"
       - "tests/**"
+      - "scripts/**"
       - ".github/workflows/check-backend.yml"
   pull_request:
     paths:
@@ -28,3 +29,11 @@ jobs:
           node --check api/generate.js
       - name: Run generator tests
         run: node --test tests/generate.test.js
+      - name: Generate demo schematic
+        run: node scripts/create-demo-schematic.js
+      - name: Upload demo schematic
+        uses: actions/upload-artifact@v4
+        with:
+          name: craftbase-demo-litematic
+          path: craftbase-demo.litematic
+          if-no-files-found: error

@@ -237,9 +237,9 @@ export function buildLitematic(input) {
   const root = Buffer.concat([
     Buffer.from([10]),
     nbtString(""),
-    tagInt("Version", 6),
-    tagInt("SubVersion", 0),
-    tagInt("MinecraftDataVersion", 3953),
+    tagInt("Version", 7),
+    tagInt("SubVersion", 1),
+    tagInt("MinecraftDataVersion", 4440),
     metadata,
     tagCompound("Regions", [region]),
     Buffer.from([0])

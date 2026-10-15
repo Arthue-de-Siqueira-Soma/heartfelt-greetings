@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080611">
+<title>Construções grátis — CraftBase</title>
+<meta name="description" content="Crie e baixe construções .litematic de Minecraft diretamente no navegador, sem IA paga, API ou conta.">
+<style>
+:root{color-scheme:dark;--bg:#070610;--panel:#110e20;--panel2:#19132b;--line:#35264e;--accent:#c4a7ff;--text:#f7f2ff;--muted:#b5a9ca;--good:#bdebb3}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 75% 0%,#24123e 0,transparent 36%),radial-gradient(ellipse at 10% 60%,#11162f 0,transparent 40%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,sans-serif}
+a{color:inherit;text-decoration:none}button,select{font:inherit}header{height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 max(5%,calc((100vw - 1120px)/2));border-bottom:1px solid #ffffff16;background:#080611eF;position:sticky;top:0;z-index:5;backdrop-filter:blur(16px)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.5px}.logo{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,#e6dcff,#9975e8);color:#160d27;font-size:21px}.brand span{color:var(--accent)}nav{display:flex;gap:23px;font-size:12px;font-weight:700;color:#d8cde9}nav a:hover{color:var(--accent)}
+main{width:min(1120px,90%);margin:0 auto}.hero{padding:58px 0 30px}.eyebrow{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:900;color:var(--accent)}h1{font-size:clamp(38px,6vw,68px);letter-spacing:-3px;line-height:1;margin:13px 0 18px}h1 span{color:var(--accent)}.intro{max-width:690px;color:var(--muted);font-size:14px;line-height:1.8}.free{display:inline-flex;gap:8px;align-items:center;margin-top:12px;padding:8px 11px;border:1px solid #7eae7766;border-radius:99px;background:#9bd18a10;color:var(--good);font-size:11px;font-weight:800}
+.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0 24px}.control{padding:14px;background:#100c1c;border:1px solid var(--line);border-radius:11px}.control label{display:block;font-size:11px;font-weight:800;color:#e9dfff;margin-bottom:9px}.control select{width:100%;padding:11px;border-radius:8px;border:1px solid #46335f;background:#090711;color:var(--text);font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-bottom:30px}.card{display:flex;flex-direction:column;background:linear-gradient(145deg,#171128,#0d0a17);border:1px solid var(--line);border-radius:14px;overflow:hidden;min-width:0;transition:.2s}.card:hover{border-color:#8267b6;transform:translateY(-2px)}.art{height:160px;position:relative;overflow:hidden;background:linear-gradient(135deg,#21183a,#0d1323);display:grid;place-items:center}.art:before{content:"";position:absolute;width:210px;height:210px;border-radius:50%;background:#b49aff0c;right:-45px;top:-80px}.voxel{display:grid;grid-template-columns:repeat(5,24px);gap:4px;transform:rotate(-7deg);filter:drop-shadow(10px 13px 0 #0006)}.voxel i{height:24px;background:#8b70b7;border:1px solid #d8c5ff22;box-shadow:inset -4px -4px #0002}.voxel i:nth-child(3n){background:#536d55}.voxel i:nth-child(4n){background:#a88b68}.voxel i:nth-child(7n){background:#5e507d}.cardbody{padding:17px;display:flex;flex-direction:column;flex:1}.card h2{font-size:16px;margin:0 0 8px}.card p{font-size:12px;color:var(--muted);line-height:1.7;margin:0 0 14px}.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:15px}.tags span{font-size:10px;color:#d8c9f0;border:1px solid #382a50;padding:5px 7px;border-radius:5px}.download{border:0;border-radius:8px;padding:12px 14px;background:linear-gradient(135deg,#e8dfff,#b39aff);color:#170e27;font-size:11px;font-weight:900;cursor:pointer;margin-top:auto}.download:hover{filter:brightness(1.08)}.download:disabled{opacity:.6;cursor:wait}
+.note{padding:16px 18px;border:1px solid #59456e;background:#130e20;border-radius:10px;color:#d6c9e8;font-size:11px;line-height:1.75;margin-bottom:35px}.note strong{color:#f0e5ff}.footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-size:10px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:30px}
+@media(max-width:700px){header{padding:0 5%}nav{gap:12px;font-size:10px}nav a:nth-child(2){display:none}.controls{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.art{height:140px}h1{letter-spacing:-2px}}
+</style>
+</head>
+<body>
+<header>
+<a class="brand" href="./index.html"><span class="logo">▦</span><span>CRAFT<span>BASE</span></span></a>
+<nav><a href="./index.html">Início</a><a href="./catalogo.html">Catálogo</a><a href="./como-instalar.html">Como instalar</a></nav>
+</header>
+<main>
+<section class="hero">
+<div class="eyebrow">OFICINA GRATUITA / SEM IA PAGA</div>
+<h1>Construa. Baixe.<br><span>Use no seu mundo.</span></h1>
+<p class="intro">Escolha um projeto, personalize o material e o tamanho e gere o arquivo .litematic no próprio navegador. Nenhuma conta, chave de API, servidor pago ou envio de imagem é necessário.</p>
+<div class="free">✓ 100% no navegador · Sem custo por geração</div>
+</section>
+<section class="controls" aria-label="Personalização">
+<div class="control"><label for="material">Material principal</label><select id="material"><option value="minecraft:oak_planks">Madeira de carvalho</option><option value="minecraft:spruce_planks">Madeira de pinheiro</option><option value="minecraft:birch_planks">Madeira de bétula</option><option value="minecraft:stone_bricks">Tijolos de pedra</option><option value="minecraft:deepslate_bricks">Tijolos de ardósia profunda</option></select></div>
+<div class="control"><label for="size">Tamanho</label><select id="size"><option value="small">Pequeno</option><option value="medium" selected>Médio</option><option value="large">Grande</option></select></div>
+<div class="control"><label for="roof">Material do telhado / detalhes</label><select id="roof"><option value="minecraft:stone_brick_slab">Laje de tijolos de pedra</option><option value="minecraft:oak_slab">Laje de carvalho</option><option value="minecraft:spruce_slab">Laje de pinheiro</option><option value="minecraft:bricks">Tijolos</option></select></div>
+</section>
+<section class="grid" aria-label="Projetos para baixar">
+<article class="card"><div class="art"><div class="voxel" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="cardbody"><h2>Casa inicial</h2><p>Casa compacta com piso, paredes, entrada, janelas e telhado. Boa para começar um mundo survival.</p><div class="tags"><span>Casa</span><span>Madeira / pedra</span><span>1 arquivo</span></div><button class="download" data-build="house">Gerar .litematic grátis ↗</button></div></article>
+<article class="card"><div class="art"><div class="voxel" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="cardbody"><h2>Torre de vigia</h2><p>Torre defensiva com base sólida, entrada, paredes altas e ameias no topo para marcar sua base.</p><div class="tags"><span>Defesa</span><span>Vertical</span><span>Vanilla</span></div><button class="download" data-build="tower">Gerar .litematic grátis ↗</button></div></article>
+<article class="card"><div class="art"><div class="voxel" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="cardbody"><h2>Plantação automática manual</h2><p>Campo cercado com linhas de plantio e canal de água central. Ideal para uma farm inicial de comida.</p><div class="tags"><span>Farm</span><span>Plantação</span><span>Survival</span></div><button class="download" data-build="farm">Gerar .litematic grátis ↗</button></div></article>
+<article class="card"><div class="art"><div class="voxel" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="cardbody"><h2>Ponte de madeira</h2><p>Ponte com piso largo, corrimões e pilares de apoio. Conecta os lados de um rio ou vale.</p><div class="tags"><span>Ponte</span><span>Travessia</span><span>Personalizável</span></div><button class="download" data-build="bridge">Gerar .litematic grátis ↗</button></div></article>
+</section>
+<div class="note"><strong>Como funciona:</strong> o arquivo é montado localmente no seu navegador com blocos vanilla do Minecraft. O site não usa IA, não manda sua ideia ou imagem para nenhum servidor e não precisa de API paga. Estes são modelos iniciais, não construções inventadas a partir de uma captura de tela. O gerador usa como alvo o Minecraft Java 1.21.8; teste o schematic no Litematica antes de usar em um mundo importante.</div>
+<footer class="footer"><span>CRAFTBASE · Oficina gratuita</span><span>Sem API paga · Sem conta · Sem upload de imagens</span><a href="./como-instalar.html">Como instalar o .litematic ↗</a></footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const mat=()=>$('material').value, roof=()=>$('roof').value;
+const sizeMode=()=>$('size').value;
+function buildPlan(kind){
+  const blocks=new Map();
+  const put=(x,y,z,block)=>blocks.set(x+','+y+','+z,{x,y,z,block});
+  const fill=(x1,x2,y,z1,z2,block)=>{for(let x=x1;x<=x2;x++)for(let z=z1;z<=z2;z++)put(x,y,z,block)};
+  const line=(x1,z1,x2,z2,y,block)=>{const dx=Math.sign(x2-x1),dz=Math.sign(z2-z1);let x=x1,z=z1;while(true){put(x,y,z,block);if(x===x2&&z===z2)break;x+=dx;z+=dz;}};
+  const wood=mat(),top=roof(),stone='minecraft:stone_bricks',glass='minecraft:glass',air='minecraft:air';
+  const factor=sizeMode()==='small'?0:sizeMode()==='large'?2:1;
+  if(kind==='house'){
+    const n=7+factor*2,h=3+factor,mid=Math.floor(n/2),max=n-1;
+    fill(0,max,0,0,max,wood);
+    for(let y=1;y<=h;y++){
+      for(let x=0;x<n;x++)for(const z of [0,max]){
+        if(z===0&&x===mid&&y<=2)continue;
+        if((x===1||x===max-1)&&y===2)put(x,y,z,glass);else put(x,y,z,wood);
+      }
+      for(let z=1;z<max;z++)for(const x of [0,max]){
+        if(z===Math.floor(n/2)&&y===2)put(x,y,z,glass);else put(x,y,z,wood);
+      }
+    }
+    fill(0,max,h+1,0,max,top);
+    line(0,0,max,0,h+2,top);line(0,max,max,max,h+2,top);
+    put(mid,1,0,air);put(mid,2,0,air);
+    put(1,1,1,'minecraft:torch');put(max-1,1,1,'minecraft:torch');
+    return {name:'CraftBase-Casa-Inicial',description:'Casa inicial gerada localmente pelo CraftBase',blocks:[...blocks.values()]};
+  }
+  if(kind==='tower'){
+    const n=7+factor*2,h=7+factor*2,max=n-1,mid=Math.floor(n/2);
+    fill(0,max,0,0,max,stone);
+    for(let y=1;y<h;y++)for(let x=0;x<n;x++)for(let z=0;z<n;z++){
+      if(x!==0&&x!==max&&z!==0&&z!==max)continue;
+      if(z===0&&x===mid&&y<=2)continue;
+      put(x,y,z,wood);
+    }
+    fill(0,max,h,0,max,stone);
+    for(let x=0;x<n;x++)for(let z=0;z<n;z++)if((x+z)%2===0&&(x===0||x===max||z===0||z===max))put(x,h+1,z,top);
+    put(mid,1,0,air);put(mid,2,0,air);put(1,1,1,'minecraft:torch');
+    return {name:'CraftBase-Torre-de-Vigia',description:'Torre de vigia gerada localmente pelo CraftBase',blocks:[...blocks.values()]};
+  }
+  if(kind==='farm'){
+    const n=sizeMode()==='small'?9:sizeMode()==='large'?17:13,max=n-1,mid=Math.floor(n/2);
+    fill(0,max,0,0,max,'minecraft:oak_fence');
+    fill(1,max-1,0,1,max-1,'minecraft:farmland');
+    for(let x=1;x<max;x++)for(let z=1;z<max;z++){
+      if(z===mid)put(x,1,z,'minecraft:water');
+      else put(x,1,z,'minecraft:wheat');
+    }
+    for(let x=0;x<n;x++)for(const z of [0,max])put(x,1,z,'minecraft:oak_fence');
+    for(let z=0;z<n;z++)for(const x of [0,max])put(x,1,z,'minecraft:oak_fence');
+    return {name:'CraftBase-Plantacao',description:'Plantação inicial gerada localmente pelo CraftBase',blocks:[...blocks.values()]};
+  }
+  const length=sizeMode()==='small'?9:sizeMode()==='large'?19:13,width=5,mid=Math.floor(width/2);
+  for(let x=0;x<length;x++)for(let z=0;z<width;z++){
+    put(x,2,z,wood);
+    if(z===0||z===width-1)put(x,3,z,top);
+  }
+  for(let x=1;x<length;x+=4)for(let z=1;z<width-1;z++)for(let y=0;y<2;y++)put(x,y,z,stone);
+  return {name:'CraftBase-Ponte-de-Madeira',description:'Ponte gerada localmente pelo CraftBase',blocks:[...blocks.values()]};
+}
+const utf8=new TextEncoder();
+function cat(...arrays){const len=arrays.reduce((s,a)=>s+a.length,0),out=new Uint8Array(len);let p=0;for(const a of arrays){out.set(a,p);p+=a.length;}return out;}
+function u16(n){return new Uint8Array([(n>>>8)&255,n&255]);}
+function i32(n){const a=new Uint8Array(4);new DataView(a.buffer).setInt32(0,n,false);return a;}
+function i64(n){const a=new Uint8Array(8);new DataView(a.buffer).setBigInt64(0,BigInt(n),false);return a;}
+function str(s){const b=utf8.encode(String(s));return cat(u16(b.length),b);}
+function tag(type,name,payload){return cat(new Uint8Array([type]),str(name),payload);}
+function tString(name,value){return tag(8,name,str(value));}
+function tInt(name,value){return tag(3,name,i32(value));}
+function tLong(name,value){return tag(4,name,i64(value));}
+function compoundPayload(children){return cat(...children,new Uint8Array([0]));}
+function tCompound(name,children){return tag(10,name,compoundPayload(children));}
+function tList(name,type,items){return tag(9,name,cat(new Uint8Array([type]),i32(items.length),...items));}
+function tLongArray(name,values){return tag(12,name,cat(i32(values.length),...values.map(i64)));}
+function coord(name,x,y,z){return tCompound(name,[tInt('x',x),tInt('y',y),tInt('z',z)]);}
+function pack(indices,paletteLength){
+  const bits=Math.max(2,Math.ceil(Math.log2(Math.max(2,paletteLength)))),mask=(1n<<BigInt(bits))-1n;
+  const packed=Array.from({length:Math.ceil(indices.length*bits/64)},()=>0n);
+  indices.forEach((idx,i)=>{const v=BigInt(idx)&mask,bit=i*bits,li=Math.floor(bit/64),off=bit%64;packed[li]|=v<<BigInt(off);if(off+bits>64)packed[li+1]|=v>>BigInt(64-off);});
+  return packed.map(v=>BigInt.asIntN(64,v));
+}
+async function makeLitematic(plan){
+  const blocks=plan.blocks;if(!blocks.length)throw new Error('Este modelo não tem blocos.');
+  let minX=Infinity,minY=Infinity,minZ=Infinity,maxX=-Infinity,maxY=-Infinity,maxZ=-Infinity;
+  for(const b of blocks){minX=Math.min(minX,b.x);minY=Math.min(minY,b.y);minZ=Math.min(minZ,b.z);maxX=Math.max(maxX,b.x);maxY=Math.max(maxY,b.y);maxZ=Math.max(maxZ,b.z);}
+  const sx=maxX-minX+1,sy=maxY-minY+1,sz=maxZ-minZ+1,volume=sx*sy*sz;
+  if(Math.max(sx,sy,sz)>48||volume>110592)throw new Error('Este modelo ultrapassa o limite inicial do gerador.');
+  const palette=['minecraft:air'],pmap=new Map([[palette[0],0]]),indices=Array(volume).fill(0);let count=0;
+  for(const b of blocks){const i=((b.y-minY)*sz+(b.z-minZ))*sx+(b.x-minX);if(b.block==='minecraft:air'){indices[i]=0;continue;}if(!pmap.has(b.block)){pmap.set(b.block,palette.length);palette.push(b.block);}indices[i]=pmap.get(b.block);count++;}
+  const paletteTags=palette.map(name=>compoundPayload([tString('Name',name),tCompound('Properties',[])]));
+  const now=Date.now();
+  const metadata=tCompound('Metadata',[tString('Name',plan.name),tString('Author','CraftBase'),tString('Description',plan.description),tInt('RegionCount',1),tInt('TotalVolume',volume),tInt('TotalBlocks',count),tLong('TimeCreated',now),tLong('TimeModified',now),coord('EnclosingSize',sx,sy,sz)]);
+  const region=tCompound('CraftBase',[tList('BlockStatePalette',10,paletteTags),tLongArray('BlockStates',pack(indices,palette.length)),tList('TileEntities',10,[]),tList('Entities',10,[]),tList('PendingBlockTicks',10,[]),tList('PendingFluidTicks',10,[]),coord('Position',0,0,0),coord('Size',sx,sy,sz)]);
+  const nbt=cat(new Uint8Array([10]),str(''),tInt('Version',7),tInt('SubVersion',1),tInt('MinecraftDataVersion',4440),metadata,tCompound('Regions',[region]),new Uint8Array([0]));
+  if(!('CompressionStream' in window))throw new Error('Seu navegador não suporta a compressão necessária. Tente atualizar o navegador.');
+  const stream=new Blob([nbt]).stream().pipeThrough(new CompressionStream('gzip'));
+  return new Uint8Array(await new Response(stream).arrayBuffer());
+}
+document.querySelectorAll('[data-build]').forEach(button=>button.addEventListener('click',async()=>{
+  const old=button.textContent;button.disabled=true;button.textContent='Gerando no navegador...';
+  try{
+    const plan=buildPlan(button.dataset.build),bytes=await makeLitematic(plan),blob=new Blob([bytes],{type:'application/octet-stream'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download=plan.name+'.litematic';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
+    button.textContent='Arquivo gerado ✓';setTimeout(()=>{button.textContent=old;button.disabled=false;},1800);
+  }catch(err){alert(err.message||'Não foi possível gerar o arquivo.');button.textContent=old;button.disabled=false;}
+}));
+</script>
+</body>
+</html>

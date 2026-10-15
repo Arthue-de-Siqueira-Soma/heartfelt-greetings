@@ -65,6 +65,23 @@ section{scroll-margin-top:30px}
 header.wrap{position:sticky;top:0;left:auto;right:auto;width:100%;height:76px;padding:0 4%;background:#0b100df2;border-bottom:1px solid #ffffff18;backdrop-filter:blur(16px)}
 main.wrap{width:min(1180px,92%);max-width:1180px;margin:0 auto;padding-top:25px}
  
+
+/* CRAFTBASE NIGHT SKY — lunar edition */
+:root{--bg:#070817;--panel:#111326;--panel2:#191b35;--line:#303052;--green:#c5c3ff;--mint:#e1dfff;--muted:#aaaac9;--text:#f5f4ff;--orange:#d7c7ff}
+html,body{background:#070817}
+body{background:radial-gradient(ellipse at 75% -10%,#29234d 0,transparent 36%),radial-gradient(ellipse at 12% 55%,#121e42 0,transparent 42%),#070817}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.62;background-image:radial-gradient(1px 1px at 7% 18%,#fff 99%,transparent),radial-gradient(1.5px 1.5px at 17% 71%,#c9d7ff 99%,transparent),radial-gradient(1px 1px at 29% 33%,#fff 99%,transparent),radial-gradient(2px 2px at 39% 12%,#d8d2ff 99%,transparent),radial-gradient(1px 1px at 48% 83%,#fff 99%,transparent),radial-gradient(1.5px 1.5px at 58% 25%,#fff 99%,transparent),radial-gradient(1px 1px at 69% 63%,#c9d7ff 99%,transparent),radial-gradient(2px 2px at 78% 16%,#fff 99%,transparent),radial-gradient(1px 1px at 88% 48%,#fff 99%,transparent),radial-gradient(1.5px 1.5px at 95% 78%,#d8d2ff 99%,transparent),radial-gradient(1px 1px at 24% 92%,#fff 99%,transparent),radial-gradient(1px 1px at 83% 91%,#fff 99%,transparent);animation:starDrift 20s ease-in-out infinite alternate}
+header{background:#080817eF;border-bottom-color:#c6c5ff20}
+.logo{background:#c5c3ff;color:#101126;box-shadow:0 0 22px #9e9cff2a;border-color:#e1dfff}
+nav a:hover,.brand span{color:#c5c3ff}
+.pill{border-color:#aaa7ff55;color:#e1dfff;background:#a39dff10}
+.build-card{background:linear-gradient(145deg,#17182f,#0e1022);border-color:#323253;box-shadow:0 10px 30px #00000018}
+.build-card:hover{border-color:#8985dc;box-shadow:0 16px 38px #00000035,0 0 0 1px #aaa7ff12}
+.btn.primary,.filter.active{background:linear-gradient(135deg,#e1e0ff,#aaa8ff);color:#15152d}
+input,select{background:#0e1022!important;border-color:#343456!important;color:#f5f4ff!important}
+@keyframes starDrift{from{transform:translate3d(0,0,0);opacity:.4}to{transform:translate3d(0,-8px,0);opacity:.72}}
+@media(prefers-reduced-motion:reduce){body::before{animation:none}}
+
 </style>
 </head><body><header class="wrap"><a class="brand" href="./index.html"><div class="logo">▦</div><div>CRAFT<span>BASE</span></div></a><nav><a href="./index.html">Início</a><a href="./catalogo.html">Construções</a><a href="./catalogo.html#catalogo" data-filter-link="Farm">Farms</a><a href="./como-instalar.html">Como instalar</a></nav><a class="pill" href="./catalogo.html">CATÁLOGO MINECRAFT</a></header><main class="wrap"><section id="catalogo"><div class="section-head"><div><div class="tag">01 / Catálogo</div><h2>Escolha sua próxima construção</h2><p>Filtre por tipo ou pesquise pelo nome. Os botões abrem a página original do criador.</p></div></div>
 <div class="catalog-tools"><div class="filters" aria-label="Filtrar construções"><button class="filter active" data-filter="Todos">Tudo</button><button class="filter" data-filter="Casa">Casas</button><button class="filter" data-filter="Farm">Farms</button><button class="filter" data-filter="Base">Bases e decoração</button></div><input class="search" id="search" type="search" placeholder="Buscar casa, farm, vila..." aria-label="Buscar construções"></div>

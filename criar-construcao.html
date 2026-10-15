@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05040b">
 <title>Criar construção — CraftBase</title>
-<meta name="description" content="Envie uma imagem do seu mapa e descreva sua ideia para planejar uma construção personalizada de Minecraft.">
+<meta name="description" content="Envie uma imagem do seu mapa e descreva sua ideia para gerar uma construção personalizada de Minecraft.">
+<meta name="craftbase-api-base" content="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -29,7 +30,7 @@ main{width:min(100% - 32px,960px);margin:48px auto 70px}.eyebrow{color:var(--acc
 <main>
 <div class="eyebrow">Seu mapa. Sua ideia. Seu projeto.</div>
 <h1>Crie sua construção <span>personalizada.</span></h1>
-<p class="intro">Envie uma captura de tela do local no seu mundo, conte o que imaginou e defina a versão do Minecraft. Esta página é o início do fluxo de criação; a análise por IA e a geração automática do arquivo ainda precisam ser conectadas ao servidor.</p>
+<p class="intro">Envie uma captura de tela do local no seu mundo, conte o que imaginou e defina a versão do Minecraft. O CraftBase já tem um endpoint de IA que planeja os blocos e gera o arquivo; falta implantar o backend e informar sua URL nesta página.</p>
 <div class="layout">
 <section class="panel">
 <div class="chat-head"><div class="orb">✦</div><div><strong>Ateliê CraftBase</strong><small>Planejamento da sua construção</small></div><span class="status">PRÉVIA</span></div>
@@ -37,7 +38,7 @@ main{width:min(100% - 32px,960px);margin:48px auto 70px}.eyebrow{color:var(--acc
 <div class="msg bot"><small>CRAFTBASE</small>Descreva a construção que você quer fazer e mande uma imagem do lugar no mapa. Quanto mais detalhes, melhor: estilo, tamanho aproximado, materiais e o que precisa ter.</div>
 </div>
 <form class="composer" id="requestForm">
-<div><label class="field-label" for="mapImage">1. Foto ou captura de tela do mapa</label><label class="upload" for="mapImage"><span class="upload-icon">＋</span><span><strong>Escolher imagem</strong><small>PNG, JPG ou WEBP · até 10 MB</small></span><input id="mapImage" type="file" accept="image/png,image/jpeg,image/webp"><img id="preview" class="preview" alt="Prévia da imagem enviada"></label><div id="fileName" class="file-chip"></div></div>
+<div><label class="field-label" for="mapImage">1. Foto ou captura de tela do mapa</label><label class="upload" for="mapImage"><span class="upload-icon">＋</span><span><strong>Escolher imagem</strong><small>PNG, JPG ou WEBP · até 2,7 MB</small></span><input id="mapImage" type="file" accept="image/png,image/jpeg,image/webp" required><img id="preview" class="preview" alt="Prévia da imagem enviada"></label><div id="fileName" class="file-chip"></div></div>
 <div><label class="field-label" for="idea">2. Conte sua ideia</label><textarea id="idea" required maxlength="2000" placeholder="Ex.: Quero uma base medieval encaixada nessa montanha, com torre, ponte, depósito e caminhos de pedra..."></textarea></div>
 <div><label class="field-label" for="version">3. Versão do Minecraft</label><select id="version"><option value="1.21.8">Java 1.21.8 (Fabric)</option><option value="1.21.x">Java 1.21.x</option><option value="1.20.1">Java 1.20.1</option><option value="outra">Outra versão</option></select></div>
 <button class="send" type="submit">Enviar ideia para o projeto ↗</button>
@@ -63,23 +64,69 @@ input.addEventListener('change',()=>{
   const file=input.files&&input.files[0];
   if(imageUrl){URL.revokeObjectURL(imageUrl);imageUrl='';}
   if(!file){preview.style.display='none';fileName.textContent='';return;}
-  if(file.size>10*1024*1024){alert('A imagem deve ter no máximo 10 MB.');input.value='';preview.style.display='none';fileName.textContent='';return;}
+  if(file.size>2.7*1024*1024){alert('A imagem deve ter no máximo 2,7 MB para ser enviada à API.');input.value='';preview.style.display='none';fileName.textContent='';return;}
   imageUrl=URL.createObjectURL(file);preview.src=imageUrl;preview.style.display='block';fileName.textContent=file.name;
 });
-document.getElementById('requestForm').addEventListener('submit',e=>{
+const API_BASE_URL=(document.querySelector('meta[name="craftbase-api-base"]')?.content||'').trim().replace(/\/$/,'');
+const messages=document.getElementById('messages');
+function addMessage(kind,label,text){
+  const node=document.createElement('div');node.className='msg '+kind;
+  const tag=document.createElement('small');tag.textContent=label;node.appendChild(tag);
+  node.appendChild(document.createTextNode(text));messages.appendChild(node);messages.scrollTop=messages.scrollHeight;
+}
+function fileAsDataUrl(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>resolve(reader.result);
+    reader.onerror=()=>reject(new Error('Não foi possível ler a imagem selecionada.'));
+    reader.readAsDataURL(file);
+  });
+}
+document.getElementById('requestForm').addEventListener('submit',async e=>{
   e.preventDefault();
   const idea=document.getElementById('idea').value.trim();
   const version=document.getElementById('version').value;
+  const file=input.files&&input.files[0];
   if(!idea)return;
-  const messages=document.getElementById('messages');
-  const user=document.createElement('div');user.className='msg user';
-  const label=document.createElement('small');label.textContent='SUA IDEIA';user.appendChild(label);
-  user.appendChild(document.createTextNode(idea+'\n\nVersão: '+version+(input.files[0]?'\nImagem selecionada: '+input.files[0].name:'\nNenhuma imagem anexada.')));
-  messages.appendChild(user);
-  const reply=document.createElement('div');reply.className='msg bot';
-  const botLabel=document.createElement('small');botLabel.textContent='CRAFTBASE';reply.appendChild(botLabel);
-  reply.appendChild(document.createTextNode('Sua ideia foi adicionada à prévia desta conversa. Ainda não consigo analisar a imagem, conversar com uma IA real ou criar o .litematic nesta versão do site. Para ativar isso, precisamos configurar um backend seguro com IA e um gerador de schematic. Nenhuma imagem foi enviada a um servidor.'));
-  messages.appendChild(reply);messages.scrollTop=messages.scrollHeight;
+  if(!file){addMessage('bot','CRAFTBASE','Escolha uma captura de tela do seu mapa antes de continuar.');return;}
+  addMessage('user','SUA IDEIA',idea+'\n\nVersão: '+version+'\nImagem selecionada: '+file.name);
+  if(!API_BASE_URL){
+    addMessage('bot','CRAFTBASE','A etapa de IA → plano de blocos → arquivo .litematic já foi adicionada ao repositório. Para executá-la, ainda falta implantar o backend e configurar a URL da API na meta tag craftbase-api-base desta página. Sua imagem não foi enviada.');
+    return;
+  }
+  const button=document.querySelector('.send');
+  const originalText=button.textContent;
+  button.disabled=true;button.textContent='Planejando e gerando...';
+  try{
+    const imageDataUrl=await fileAsDataUrl(file);
+    const response=await fetch(API_BASE_URL+'/api/create',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({idea,version,imageDataUrl})
+    });
+    if(!response.ok){
+      const errorBody=await response.json().catch(()=>({}));
+      throw new Error(errorBody.error||'Não foi possível gerar o arquivo.');
+    }
+    const blob=await response.blob();
+    const objectUrl=URL.createObjectURL(blob);
+    const disposition=response.headers.get('Content-Disposition')||'';
+    const match=disposition.match(/filename="([^"]+)"/i);
+    const filename=match?match[1]:'craftbase-construcao.litematic';
+    const link=document.createElement('a');link.href=objectUrl;link.download=filename;
+    document.body.appendChild(link);link.click();link.remove();
+    setTimeout(()=>URL.revokeObjectURL(objectUrl),1500);
+    const size=response.headers.get('X-CraftBase-Size')||'tamanho não informado';
+    const count=response.headers.get('X-CraftBase-Block-Count')||'—';
+    let summary='Arquivo gerado: '+filename+'\nDimensões: '+size+'\nBlocos: '+count+'\nO download deve começar automaticamente.';
+    const encodedSummary=response.headers.get('X-CraftBase-Plan-Summary');
+    if(encodedSummary){try{summary+='\nResumo: '+decodeURIComponent(encodedSummary);}catch{}}
+    addMessage('bot','CRAFTBASE',summary+'\nConfira o schematic no Litematica e teste em um mundo separado antes de usar no seu mundo principal.');
+  }catch(error){
+    addMessage('bot','CRAFTBASE',error instanceof Error?error.message:'Ocorreu um erro ao gerar a construção.');
+  }finally{
+    button.disabled=false;button.textContent=originalText;
+  }
 });
 </script>
 </body>
